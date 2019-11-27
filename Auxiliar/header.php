@@ -1,6 +1,4 @@
-<?php 
-session_start();
-?>
+<?php ?>
 
 <div class="row tam">
     <div class="col">
