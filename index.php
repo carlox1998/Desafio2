@@ -59,9 +59,14 @@ and open the template in the editor.
                     </div>
                 </nav>
             </div>
-        </div>
+        </div>      
         <div class="container">
             <main>
+                <nav>
+                    <div class="breadcrumb">
+                        <a class="breadcrumb-item" href="index.php">Inicio</a>
+                    </div>
+                </nav>
                 <div class="col">
                     <div class="media">
                         <img src="imagen/imagen.jpg" width="100%" height="360px" alt="logo" class="icon"/>
