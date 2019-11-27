@@ -73,5 +73,43 @@ class ConexionEstatica {
         $stmt->close();
         return $sol;
     }
+    
+    static function InsertarUsuario($dn, $co, $cla, $no) {
+        $query = "INSERT INTO usuario (DNI, Correo, Clave, Nombre,Rol,PartidasGanadas) VALUES (?,?,?,?,0,0)";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("ssss", $dn, $co, $cla, $no);
+        if ( $stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
+    
+    static function EliminarUsuario($correo) {
+        $query = "DELETE FROM usuario WHERE Correo = '" . $correo . "'";
+        if (self::$conexion->query($query)) {
+            echo "Registro borrado";
+        } else {
+            echo "Error al borrar: " . mysqli_error(ConexionEstatica::$conexion);
+        }
+    }
+    
+    static function ModificarUsuario($correo, $nombre, $rol) {
+        $query = "Update usuario set Nombre= ?, Rol= ? WHERE Correo = '" . $correo . "'";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("si", $nombre, $rol);
+        if ($stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
+    
+    static function cerrarConexion() {
+        self::$conexion->close();
+        print "Conexión 2 cerrada" . "<br />";
+    }
 
 }
