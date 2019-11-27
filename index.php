@@ -13,36 +13,10 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        session_start();
         ?>
         <div class="container-fluid">
-            <div class="row tam">
-                <div class="col">
-                    <div class="media">
-                        <img src="imagen/cosa2.jpg" width="60px" height="60px" class="icon"/>
-                    </div>
-                </div>
-                <?php if (!isset($_SESSION['Usuario'])) { ?>
-                    <div class="col">
-                        <div class="row tam justify-content-end align-items-center">
-                            <form class="form-inline">
-                                <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#entrar" type="button" value="Login">
-                                <input class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registro" type="button" value="Registro">
-                            </form>
-                        </div>
-                    </div>
-                <?php } else {
-                    ?>
-                    <div class="col">
-                        <div class="row tam justify-content-end align-items-center">
-                            <form action="controladores/Controlador.php" method="post">
-                                <input type="submit" value="Cerrar Sesion" name="CerrarSesion">
-                            </form>
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
-            </div>
+            <?php include_once 'Auxiliar/header.php'; ?>
             <div class="row tam">
                 <nav class="navbar tam navbar-expand-sm navbar-dark bg-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
@@ -54,14 +28,14 @@ and open the template in the editor.
                                 <a href="#" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown">Noticias</a>
+                                <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Últimas noticias</a>
                                     <a class="dropdown-item" href="#">Noticias Destacadas</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</a>
+                                <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Listar por Nombre</a>
                                     <a class="dropdown-item" href="#">Listar por Tematica</a>
@@ -72,10 +46,10 @@ and open the template in the editor.
                                 $usuario = $_SESSION['usuario'];
                                 ?>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">Contacto</a>
+                                    <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Añadir Juegos</a>
-                                        <?php if ($usuario->getRol() == 2) { ?>
+                                        <?php if ($usuario->getRol() == 1) { ?>
                                             <a class="dropdown-item" href="#">Validar Juegos</a>
                                         <?php } ?>
                                     </div>
@@ -86,12 +60,22 @@ and open the template in the editor.
                 </nav>
             </div>
         </div>
-
-
-
-
-
-
+        <div class="container">
+            <main>
+                <div class="col">
+                    <div class="media">
+                        <img src="imagen/imagen.jpg" width="100%" height="360px" alt="logo" class="icon"/>
+                    </div>
+                </div>
+                <h1>"Nombre de la pagina"</h1>
+                <p>Bienvenidos a "Insertar nombre de la pagina" un lugar dedicado a Juegos antiguos que seguramente no habreis escuchado sobre ellos.</p>
+                <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina</p>
+                <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas de los juegos antiguos.</p>
+            </main>            
+        </div>
+        <footer>
+            <?php include_once 'Auxiliar/footer.php'; ?>
+        </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="files/bootstrap-4.3.1-dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

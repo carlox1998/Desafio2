@@ -20,3 +20,8 @@ and open the template in the editor.
 .navbar{
     margin-left: 15px;
 }
+
+footer{
+    background-color: grey;
+    height: 50px;
+}
