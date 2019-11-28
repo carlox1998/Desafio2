@@ -57,7 +57,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"],$fila["Autor"]);
             }
         } else {
             echo 'Fallo';
@@ -78,7 +78,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"],$fila["Autor"]);
             }
         } else {
             echo 'Fallo';
@@ -99,14 +99,14 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Tematica"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
             }
         } else {
             echo 'Fallo';
         }
         $stmt->close();
 
-        return $noticias;
+        return $juegos;
     }
     /**
      * Funcion que obtiene los juegos segun la tematica que han pedido los usuarios
@@ -120,14 +120,14 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Tematica"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
             }
         } else {
             echo 'Fallo';
         }
         $stmt->close();
 
-        return $noticias;
+        return $juegos;
     }
     /**
      * Funcion que obtiene al Usuario que hace un login en la pagina
@@ -198,7 +198,7 @@ class ConexionEstatica {
      * @param type $EMinima
      */
     static function InsertarJuego($foto,$no, $des, $tem,$plat,$FSalida,$EMinima) {
-        $query = "INSERT INTO juegos (Id, Foto, Nombre, Descripcion,Tematica,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (0,?,?,?,?,?,?,?,0)";
+        $query = "INSERT INTO juegos (Foto, Nombre, Descripcion,Tematica,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (?,?,?,?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("bsssssi", $foto, $no, $des, $tem,$plat,$FSalida,$EMinima);
         if ( $stmt->execute()) {
