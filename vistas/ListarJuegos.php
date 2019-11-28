@@ -14,7 +14,6 @@ and open the template in the editor.
     <body>
         <?php
         session_start();
-               
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -32,10 +31,10 @@ and open the template in the editor.
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
                                 <div class="dropdown-menu">
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                        <input type="submit" name="cosa" value="Ultimas Noticias">
+                                        <input class="btn" type="submit" name="cosa" value="Ultimas Noticias">
                                     </form>
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                        <input type="submit" name="cosa" value="Noticias Destacadas">
+                                        <input class="btn" type="submit" name="cosa" value="Noticias Destacadas">
                                     </form>
                                 </div>
                             </li>
@@ -43,10 +42,10 @@ and open the template in the editor.
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                        <input type="submit" name="cosa" value="Listar por Nombre">
+                                        <input class="btn" type="submit" name="cosa" value="Listar por Nombre">
                                     </form>
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                        <input type="submit" name="cosa" value="Listar por Tematica">
+                                        <input class="btn" type="submit" name="cosa" value="Listar por Tematica">
                                     </form>
                                 </div>
                             </li>
@@ -57,9 +56,13 @@ and open the template in the editor.
                                 <li class="nav-item dropdown"><!--Esto deberia ir al controlador-->
                                     <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Añadir Juegos</a>
+                                        <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                            <input class="btn" type="submit" name="cosa" value="Añadir Juegos">
+                                        </form>
                                         <?php if ($usuario->getRol() == 1) { ?>
-                                            <a class="dropdown-item" href="#">Validar Juegos</a>
+                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="cosa" value="Validar Juegos">
+                                            </form>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -78,7 +81,7 @@ and open the template in the editor.
                         <a class="breadcrumb-item" href="../index.php">Listar Juego <?php echo''; ?></a>
                     </div>
                 </nav>
-                 
+
             </main>            
         </div>
         <footer class="color">
