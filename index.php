@@ -24,21 +24,29 @@ and open the template in the editor.
                     </button>
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a href="#" class="nav-link">Inicio</a>
+                            <li class="nav-item">
+                                <a href="index.php" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Últimas Noticias</a>
-                                    <a class="dropdown-item" href="#">Noticias Destacadas</a>
+                                    <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                        <input class="btn" type="submit" name="UltimaNoticia" value="Ultimas Noticias">
+                                    </form>
+                                    <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                        <input class="btn" type="submit" name="NoticiaDestacada" value="Noticias Destacadas">
+                                    </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item active dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="vistas/ListarJuegos.php">Listar por Nombre</a>
-                                    <a class="dropdown-item" href="#">Listar por Tematica</a>
+                                    <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                        <input class="btn" type="submit" name="ListarNombrePagina" value="Listar por Nombre">
+                                    </form>
+                                    <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                        <input class="btn" type="submit" name="ListarTematicaPagina" value="Listar por Tematica">
+                                    </form>
                                 </div>
                             </li>
                             <?php
@@ -48,9 +56,13 @@ and open the template in the editor.
                                 <li class="nav-item dropdown">
                                     <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Añadir Juegos</a>
+                                        <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                            <input class="btn" type="submit" name="AddJuegoPagina" value="Añadir Juegos">
+                                        </form>
                                         <?php if ($usuario->getRol() == 1) { ?>
-                                            <a class="dropdown-item" href="#">Validar Juegos</a>
+                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
+                                            </form>
                                         <?php } ?>
                                     </div>
                                 </li>
