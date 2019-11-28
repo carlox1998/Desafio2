@@ -15,7 +15,7 @@ and open the template in the editor.
         <?php
         session_start();
         ?>
-        <div class="container-fluid">
+        <div class="container-fluid color">
             <?php include_once 'Auxiliar/header.php'; ?>
             <div class="row tam">
                 <nav class="navbar tam navbar-expand-sm navbar-dark bg-dark">
@@ -30,7 +30,7 @@ and open the template in the editor.
                             <li class="nav-item dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Últimas noticias</a>
+                                    <a class="dropdown-item" href="#">Últimas Noticias</a>
                                     <a class="dropdown-item" href="#">Noticias Destacadas</a>
                                 </div>
                             </li>
@@ -78,7 +78,7 @@ and open the template in the editor.
                 <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas de los juegos antiguos.</p>
             </main>            
         </div>
-        <footer>
+        <footer class="color">
             <?php include_once 'Auxiliar/footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
