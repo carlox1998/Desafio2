@@ -16,7 +16,7 @@ and open the template in the editor.
         session_start();
         ?>
         <div class="container-fluid color">
-            <?php include_once 'Auxiliar/header.php'; ?>
+            <?php include_once 'header.php'; ?>
             <div class="row tam">
                 <nav class="navbar tam navbar-expand-sm navbar-dark bg-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
@@ -37,7 +37,7 @@ and open the template in the editor.
                             <li class="nav-item dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Listar por Nombre</a>
+                                    <a class="dropdown-item" href="vistas/ListarJuegos.php">Listar por Nombre</a>
                                     <a class="dropdown-item" href="#">Listar por Tematica</a>
                                 </div>
                             </li>
@@ -73,13 +73,13 @@ and open the template in the editor.
                     </div>
                 </div>
                 <h1>"Nombre de la pagina"</h1>
-                <p>Bienvenidos a "Insertar nombre de la pagina" un lugar dedicado a Juegos antiguos que seguramente no habreis escuchado sobre ellos.</p>
-                <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina</p>
-                <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas de los juegos antiguos.</p>
+                <p>Bienvenidos a "Insertar nombre de la pagina" un lugar dedicado a VideoJuegos tanto antiguos como las nuevos incorporaciones a este sector.</p>
+                <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados o ver las ultimas incorporaciones de estos.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.</p>
+                <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas desde antiguos hasta los de ahora.</p>
             </main>            
         </div>
         <footer class="color">
-            <?php include_once 'Auxiliar/footer.php'; ?>
+            <?php include_once 'footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

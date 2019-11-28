@@ -3,7 +3,13 @@
 <div class="row tam">
     <div class="col">
         <div class="media">
+             <?php
+             $n=getcwd();             
+             if (strcmp($n,'C:\xampp\htdocs\TemaPHP\Ejercicios\Desafio2')==0) { ?>
             <img src="imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
+             <?php }else{ ?>
+            <img src="../imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
+            <?php } ?>
         </div>
     </div>
     <?php if (!isset($_SESSION['Usuario'])) { ?>

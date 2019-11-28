@@ -11,5 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <p>Error 404 tu correo o clave no se encuentra en nuestra Base de Datos, asegurate de que esten bien.</p>
+        <form action="../index.php">
+            <input type="submit" value="Volver">
+        </form>
+
     </body>
 </html>
