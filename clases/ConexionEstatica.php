@@ -14,7 +14,9 @@
 class ConexionEstatica {
 
     public static $conexion;
-
+    /**
+     * Funcion para conectarse a la Base de Datos
+     */
     static function AbrirConexion() {
         self::$conexion = new mysqli('localhost', Constantes::$usuario, Constantes::$pass, Constantes::$base);
         print "Conexión realizada de forma de objeto: " . self::$conexion->get_server_info() . "<br/>";
@@ -22,7 +24,11 @@ class ConexionEstatica {
             print "Fallo al conectar a MySQL: " . self::$conexion->connect_error;
         }
     }
-
+    /**
+     * Funcion que Obtiene a todos los Usuarios excepto al que se ha conectado para hacer el crud
+     * @param type $correo
+     * @return \Usuario
+     */
     static function obtenerUsuariosExcepcion($correo) {
         $query = "SELECT * FROM usuario where Correo != ? ";
         $stmt = self::$conexion->prepare($query);
@@ -39,7 +45,96 @@ class ConexionEstatica {
 
         return $usuarios;
     }
+    /**
+     * Funcion que obtiene todas las Noticias Nuevas.
+     * @param type $tipo
+     * @return \Noticia
+     */
+    static function obtenerNoticiasNuevas($tipo) {
+        $query = "SELECT * FROM noticias where Tipo = ? ";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $tipo);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
 
+        return $noticias;
+    }
+    /**
+     * Funcion que Obtiene las noticias destacadas
+     * @param type $tipo
+     * @return \Noticia
+     */
+    static function obtenerNoticiasDestacadas($tipo) {
+        $query = "SELECT * FROM noticias where Tipo = ? ";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $tipo);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
+
+        return $noticias;
+    }
+    /**
+     * Funcion que obtiene los juegos segun empiezen por la letra que han pedido los usuarios
+     * @param type $letra
+     * @return \Noticia
+     */
+    static function ListarJuegosNombre($letra) {
+        $query = "SELECT * FROM juegos where Tipo = ? ";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $letra);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
+
+        return $noticias;
+    }
+    /**
+     * Funcion que obtiene los juegos segun la tematica que han pedido los usuarios
+     * @param type $tipo
+     * @return \Noticia
+     */
+    static function ListarJuegosTematica($tipo) {
+        $query = "SELECT * FROM juegos where Tipo = ? ";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $tipo);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"]);
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
+
+        return $noticias;
+    }
+    /**
+     * Funcion que obtiene al Usuario que hace un login en la pagina
+     * @param type $correo
+     * @param type $clave
+     * @return \Usuario
+     */
     static function obtenerUsuario($correo, $clave) {
         $query = "SELECT * FROM usuario where Correo = ? and Clave = ?";
         $stmt = self::$conexion->prepare($query);
@@ -54,7 +149,12 @@ class ConexionEstatica {
         $stmt->close();
         return $usuario;
     }
-
+    /**
+     * Funcion que comprueba si el usuario que hace login esta en nuestra Base de Datos
+     * @param type $correo
+     * @param type $clave
+     * @return boolean
+     */
     static function ComprobarUsuario($correo, $clave) {
         $sol = true;
         $query = "SELECT * FROM usuario where Correo = ? and Clave = ?";
@@ -73,9 +173,11 @@ class ConexionEstatica {
         $stmt->close();
         return $sol;
     }
-    
+    /*
+     * Funcion para insertar Usuarios a la Base de Datos
+     */
     static function InsertarUsuario($dn, $co, $cla, $no) {
-        $query = "INSERT INTO usuario (DNI, Correo, Clave, Nombre,Rol,PartidasGanadas) VALUES (?,?,?,?,0,0)";
+        $query = "INSERT INTO usuario (DNI, Correo, Clave, Nombre,Rol) VALUES (?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("ssss", $dn, $co, $cla, $no);
         if ( $stmt->execute()) {
@@ -85,7 +187,31 @@ class ConexionEstatica {
         }
         $stmt->close();
     }
-    
+    /**
+     * Funcion para añadir juegos a la Base de Datos
+     * @param type $foto
+     * @param type $no
+     * @param type $des
+     * @param type $tem
+     * @param type $plat
+     * @param type $FSalida
+     * @param type $EMinima
+     */
+    static function InsertarJuego($foto,$no, $des, $tem,$plat,$FSalida,$EMinima) {
+        $query = "INSERT INTO juegos (Id, Foto, Nombre, Descripcion,Tematica,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (0,?,?,?,?,?,?,?,0)";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("bsssssi", $foto, $no, $des, $tem,$plat,$FSalida,$EMinima);
+        if ( $stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
+    /**
+     * Funcion para eliminar Usuarios
+     * @param type $correo
+     */
     static function EliminarUsuario($correo) {
         $query = "DELETE FROM usuario WHERE Correo = '" . $correo . "'";
         if (self::$conexion->query($query)) {
@@ -94,11 +220,32 @@ class ConexionEstatica {
             echo "Error al borrar: " . mysqli_error(ConexionEstatica::$conexion);
         }
     }
-    
+    /**
+     * Funcion para modificar a los Usuarios
+     * @param type $correo
+     * @param type $nombre
+     * @param type $rol
+     */
     static function ModificarUsuario($correo, $nombre, $rol) {
         $query = "Update usuario set Nombre= ?, Rol= ? WHERE Correo = '" . $correo . "'";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("si", $nombre, $rol);
+        if ($stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
+    /**
+     * Funcion para que el administrador valide un juego que los usuarios hayan añadido
+     * @param type $correo
+     * @param type $nombre
+     * @param type $rol
+     */
+    static function ValidarJuegos($id, $nombre, $rol) {
+        $query = "Update juegos set Validado= 1 WHERE Id = '" . $id . "'";
+        $stmt = self::$conexion->prepare($query);
         if ($stmt->execute()) {
             echo 'OK';
         } else {

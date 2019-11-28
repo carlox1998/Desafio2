@@ -11,6 +11,10 @@ and open the template in the editor.
    height: 100%;
    width: 100%;
 }
+
+.color{
+    background-color: #343a40;
+}
 .container-fluid{
     margin: 10px;
     padding: 0px;
