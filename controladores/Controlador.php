@@ -34,14 +34,14 @@ if (isset($_REQUEST['NoticiaDestacada'])) {
 
 if (isset($_REQUEST['ListarNombrePagina'])) {
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosNombre']= ConexionEstatica::ObtenerJuegosNombre();
+    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre();
     header("location:../vistas/listar.php");
     ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['ListarTematicaPagina'])) {
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosTematica']= ConexionEstatica::ObtenerJuegosTematica();
+    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica();
     header("location:../vistas/listar.php");
     ConexionEstatica::cerrarConexion();
 }

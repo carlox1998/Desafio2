@@ -1,5 +1,6 @@
 <?php
-
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/Const/Constantes.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Usuario.php');
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,7 +51,7 @@ class ConexionEstatica {
      * @param type $tipo
      * @return \Noticia
      */
-    static function obtenerNoticiasNuevas($tipo) {
+    static function ObtenerNoticiasNuevas($tipo) {
         $query = "SELECT * FROM noticias where Tipo = ? ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $tipo);
@@ -71,7 +72,7 @@ class ConexionEstatica {
      * @param type $tipo
      * @return \Noticia
      */
-    static function obtenerNoticiasDestacadas($tipo) {
+    static function ObtenerNoticiasDestacadas($tipo) {
         $query = "SELECT * FROM noticias where Tipo = ? ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $tipo);
