@@ -12,7 +12,7 @@
             <?php } ?>
         </div>
     </div>
-    <?php if (!isset($_SESSION['Usuario'])) { ?>
+    <?php if (!isset($_SESSION['usuario'])) { ?>
         <div class="col">
             <div class="row tam justify-content-end align-items-center">
                 <form class="form-inline">
@@ -26,7 +26,7 @@
         <div class="col">
             <div class="row tam justify-content-end align-items-center">
                 <form action="controladores/Controlador.php" method="post">
-                    <input type="submit" value="Cerrar Sesion" name="CerrarSesion">
+                    <input type="submit" class="btn btn-primary btn-sm " value="Cerrar Sesion" name="CerrarSesion">
                 </form>
             </div>
         </div>

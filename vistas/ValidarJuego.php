@@ -14,7 +14,7 @@ and open the template in the editor.
         session_start();
         ?>
         <div class="container-fluid color">
-            <?php include_once 'header.php'; ?>
+            <?php include_once '../header.php'; ?>
             <div class="row tam">
                 <nav class="navbar tam navbar-expand-sm navbar-dark bg-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
@@ -71,9 +71,18 @@ and open the template in the editor.
             </div>
         </div>
         
-        
+        <div class="container">
+            <main>
+                <nav>
+                    <div class="breadcrumb">
+                        <a class="breadcrumb-item" href="index.php">Inicio</a>
+                        <a class="breadcrumb-item" href="#">Validar Juegos</a>
+                    </div>
+                </nav>
+            </main>            
+        </div>      
         <footer>
-            <?php include_once './footer.php'; ?>
+            <?php include_once '../footer.php'; ?>
         </footer>
     </body>
 </html>

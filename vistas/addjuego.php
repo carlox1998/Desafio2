@@ -14,7 +14,7 @@ and open the template in the editor.
         session_start();
         ?>
         <div class="container-fluid color">
-            <?php include_once 'header.php'; ?>
+            <?php include_once '../header.php'; ?>
             <div class="row tam">
                 <nav class="navbar tam navbar-expand-sm navbar-dark bg-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
@@ -71,6 +71,21 @@ and open the template in the editor.
             </div>
         </div>
         
+        <div class="container">
+            <form name="formulario" action="controladores/Controlador.php" method="post">
+                <label for="dni">DNI</label>
+                <input id="dni" name="dni" type="text" required>
+                <label for="correo">Correo</label>
+                <input id="correo" name="correo" type="text" required>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" required>
+                <label for="contra">Password</label>
+                <input id="contra" name="contra" type="password">
+                <label for="contra2">Repite Password</label>
+                <input id="contra2" name="contra2" type="password">
+                <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
+            </form>
+        </div>
         
         <footer>
             <?php include_once './footer.php'; ?>

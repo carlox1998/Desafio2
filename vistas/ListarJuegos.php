@@ -78,10 +78,35 @@ and open the template in the editor.
                     <div class="breadcrumb"><!--Esto deberia ir al controlador-->
                         <a class="breadcrumb-item" href="../index.php">Inicio</a>
                         <a class="breadcrumb-item" href="#">Listar Juego</a>
-                        <a class="breadcrumb-item" href="../index.php">Listar Juego <?php echo''; ?></a>
+                        <a class="breadcrumb-item" href="#">Listar Juego <?php
+                            if (isset($_SESSION['juegosNombre'])) {
+                                echo'Nombre';
+                            } else {
+                                echo'Tematica';
+                            }
+                            ?>
+                        </a>
                     </div>
                 </nav>
-
+                <?php
+                if (isset($_SESSION['juegosNombre'])) {
+                    if (strcmp($_SESSION['juegosNombre'], 'null')==0) {
+                        ?>
+                        <p>Results Not Found</p>
+                    <?php } else { ?>
+                        <p>Results Found</p>
+                        <?php
+                    }
+                } else {
+                    if (strcmp($_SESSION['juegosTematica'], 'null')==0) {
+                        ?>
+                        <p>Results Not Found</p>
+                    <?php } else { ?>
+                        <p>Results Found</p>
+                        <?php
+                    }
+                }
+                ?>
             </main>            
         </div>
         <footer class="color">

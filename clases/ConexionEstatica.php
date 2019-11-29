@@ -1,4 +1,5 @@
 <?php
+
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/Const/Constantes.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Usuario.php');
 /*
@@ -15,6 +16,7 @@ require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2
 class ConexionEstatica {
 
     public static $conexion;
+
     /**
      * Funcion para conectarse a la Base de Datos
      */
@@ -25,6 +27,7 @@ class ConexionEstatica {
             print "Fallo al conectar a MySQL: " . self::$conexion->connect_error;
         }
     }
+
     /**
      * Funcion que Obtiene a todos los Usuarios excepto al que se ha conectado para hacer el crud
      * @param type $correo
@@ -46,6 +49,7 @@ class ConexionEstatica {
 
         return $usuarios;
     }
+
     /**
      * Funcion que obtiene todas las Noticias Nuevas.
      * @param type $tipo
@@ -58,7 +62,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"],$fila["Autor"]);
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"], $fila["Autor"]);
             }
         } else {
             echo 'Fallo';
@@ -67,6 +71,22 @@ class ConexionEstatica {
 
         return $noticias;
     }
+
+    static function ObtenerJuegosValidar() {
+        $query = "SELECT * FROM juegos where Validado = 0 ";
+        $stmt = self::$conexion->prepare($query);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Tematica"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
+        return $juegos;
+    }
+
     /**
      * Funcion que Obtiene las noticias destacadas
      * @param type $tipo
@@ -79,7 +99,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"],$fila["Autor"]);
+                $noticias[] = new Noticia($fila["Titulo"], $fila["Contenido"], $fila["Autor"]);
             }
         } else {
             echo 'Fallo';
@@ -88,19 +108,20 @@ class ConexionEstatica {
 
         return $noticias;
     }
+
     /**
      * Funcion que obtiene los juegos segun empiezen por la letra que han pedido los usuarios
      * @param type $letra
      * @return \Noticia
      */
     static function ListarJuegosNombre($letra) {
-        $query = "SELECT * FROM juegos where Tipo = ? ";
+        $juegos="null";
+        $query = "SELECT * FROM juegos where Nombre = '".$letra."%' ";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("s", $letra);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Tematica"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Tematica"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -109,19 +130,20 @@ class ConexionEstatica {
 
         return $juegos;
     }
+
     /**
      * Funcion que obtiene los juegos segun la tematica que han pedido los usuarios
      * @param type $tipo
      * @return \Noticia
      */
     static function ListarJuegosTematica($tipo) {
-        $query = "SELECT * FROM juegos where Tipo = ? ";
+        $juegos="null";
+        $query = "SELECT * FROM juegos where Tematica = '".$tipo."' ";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("s", $tipo);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Tematica"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Tematica"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -130,6 +152,7 @@ class ConexionEstatica {
 
         return $juegos;
     }
+
     /**
      * Funcion que obtiene al Usuario que hace un login en la pagina
      * @param type $correo
@@ -150,6 +173,7 @@ class ConexionEstatica {
         $stmt->close();
         return $usuario;
     }
+
     /**
      * Funcion que comprueba si el usuario que hace login esta en nuestra Base de Datos
      * @param type $correo
@@ -174,20 +198,23 @@ class ConexionEstatica {
         $stmt->close();
         return $sol;
     }
+
     /*
      * Funcion para insertar Usuarios a la Base de Datos
      */
+
     static function InsertarUsuario($dn, $co, $cla, $no) {
         $query = "INSERT INTO usuario (DNI, Correo, Clave, Nombre,Rol) VALUES (?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("ssss", $dn, $co, $cla, $no);
-        if ( $stmt->execute()) {
+        if ($stmt->execute()) {
             echo 'OK';
         } else {
             echo 'Falla';
         }
         $stmt->close();
     }
+
     /**
      * Funcion para añadir juegos a la Base de Datos
      * @param type $foto
@@ -198,17 +225,18 @@ class ConexionEstatica {
      * @param type $FSalida
      * @param type $EMinima
      */
-    static function InsertarJuego($foto,$no, $des, $tem,$plat,$FSalida,$EMinima) {
+    static function InsertarJuego($foto, $no, $des, $tem, $plat, $FSalida, $EMinima) {
         $query = "INSERT INTO juegos (Foto, Nombre, Descripcion,Tematica,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (?,?,?,?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("bsssssi", $foto, $no, $des, $tem,$plat,$FSalida,$EMinima);
-        if ( $stmt->execute()) {
+        $stmt->bind_param("bsssssi", $foto, $no, $des, $tem, $plat, $FSalida, $EMinima);
+        if ($stmt->execute()) {
             echo 'OK';
         } else {
             echo 'Falla';
         }
         $stmt->close();
     }
+
     /**
      * Funcion para eliminar Usuarios
      * @param type $correo
@@ -221,6 +249,7 @@ class ConexionEstatica {
             echo "Error al borrar: " . mysqli_error(ConexionEstatica::$conexion);
         }
     }
+
     /**
      * Funcion para modificar a los Usuarios
      * @param type $correo
@@ -238,6 +267,7 @@ class ConexionEstatica {
         }
         $stmt->close();
     }
+
     /**
      * Funcion para que el administrador valide un juego que los usuarios hayan añadido
      * @param type $correo
@@ -254,7 +284,7 @@ class ConexionEstatica {
         }
         $stmt->close();
     }
-    
+
     static function cerrarConexion() {
         self::$conexion->close();
         print "Conexión 2 cerrada" . "<br />";

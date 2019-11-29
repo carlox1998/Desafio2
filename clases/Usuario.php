@@ -19,7 +19,7 @@ class Usuario {
     private $Nombre;
     private $Rol;
 
-    function __construct($Dni, $Correo, $Clave, $Nombre, $Rol, $PGana) {
+    function __construct($Dni, $Correo, $Clave, $Nombre, $Rol) {
         $this->Dni = $Dni;
         $this->Correo = $Correo;
         $this->Clave = $Clave;
