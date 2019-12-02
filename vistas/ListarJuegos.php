@@ -27,7 +27,7 @@ and open the template in the editor.
                             <li class="nav-item">
                                 <a href="../index.php" class="nav-link">Inicio</a>
                             </li>
-                            <li class="nav-item dropdown"><!--Esto deberia ir al controlador-->
+                            <li class="nav-item dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
                                 <div class="dropdown-menu">
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
@@ -38,7 +38,7 @@ and open the template in the editor.
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item active dropdown"><!--Esto deberia ir al controlador-->
+                            <li class="nav-item active dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
@@ -53,7 +53,7 @@ and open the template in the editor.
                             if (isset($_SESSION['usuario'])) {
                                 $usuario = $_SESSION['usuario'];
                                 ?>
-                                <li class="nav-item dropdown"><!--Esto deberia ir al controlador-->
+                                <li class="nav-item dropdown">
                                     <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
                                         <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
@@ -75,7 +75,7 @@ and open the template in the editor.
         <div class="container">
             <main>
                 <nav>
-                    <div class="breadcrumb"><!--Esto deberia ir al controlador-->
+                    <div class="breadcrumb">
                         <a class="breadcrumb-item" href="../index.php">Inicio</a>
                         <a class="breadcrumb-item" href="#">Listar Juego</a>
                         <a class="breadcrumb-item" href="#">Listar Juego <?php
