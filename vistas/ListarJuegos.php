@@ -13,6 +13,8 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        require_once '../clases/Juego.php';
+        require_once '../clases/Usuario.php';
         session_start();
         ?>
         <div class="container-fluid color">
