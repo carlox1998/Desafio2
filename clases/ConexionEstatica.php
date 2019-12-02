@@ -140,8 +140,9 @@ class ConexionEstatica {
      */
     static function ListarJuegosTematica($tipo) {
         $juegos="null";
-        $query = "SELECT * FROM juegos where Tematica = '".$tipo."' ";
+        $query = "SELECT * FROM juegos WHERE Nombre=(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
         $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $tipo);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
