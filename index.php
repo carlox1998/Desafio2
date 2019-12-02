@@ -13,7 +13,7 @@ and open the template in the editor.
         <script>
             $(document).ready(function () {
                 document.getElementById("registrarse").disabled = true;
-                
+
                 $("#contra2").blur(function () {
                     var contra = $("#contra").val();
                     var contra2 = $("#contra2").val();
@@ -108,28 +108,62 @@ and open the template in the editor.
                 <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas desde antiguos hasta los de ahora.</p>
             </main>            
         </div>
-        <form name="formulario" action="controladores/Controlador.php" method="post">
-            <label for="dni">DNI</label>
-            <input id="dni" name="dni" type="text" required>
-            <label for="correo">Correo</label>
-            <input id="correo" name="correo" type="text" required>
-            <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" required>
-            <label for="contra">Password</label>
-            <input id="contra" name="contra" type="password">
-            <label for="contra2">Repite Password</label>
-            <input id="contra2" name="contra2" type="password">
-            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
-        </form>
-        
-        <form name="formulario" action="controladores/Controlador.php" method="post">
-            
-            <label for="usuario">Usuario</label>
-            <input id="usuario" name="usuario" type="text" required>
-            <label for="clave">Password</label>
-            <input id="clave" name="clave" type="password">
-            <input type="submit" name="validar" id="validar" value="Aceptar">
-        </form>
+        <div id="registrar" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            Título
+                        </div>            
+                    </div>
+                    <div class="modal-body">
+                        <form name="formulario" action="controladores/Controlador.php" method="post">
+                            <label for="dni">DNI</label>
+                            <input id="dni" name="dni" type="text" required>
+                            <label for="correo">Correo</label>
+                            <input id="correo" name="correo" type="text" required>
+                            <label for="nombre">Nombre</label>
+                            <input id="nombre" name="nombre" type="text" required>
+                            <label for="contra">Password</label>
+                            <input id="contra" name="contra" type="password">
+                            <label for="contra2">Repite Password</label>
+                            <input id="contra2" name="contra2" type="password">
+                            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        Pie de la ventana modal
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="login" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <div class="alert alert-primary alert-dismissible show fade">
+                                Login:
+                                <button type="button" class="close" data-dismiss="modal">X</button>
+                            </div>
+                        </div>            
+                    </div>
+                    <div class="modal-body">
+                        <form name="formulario" action="controladores/Controlador.php" method="post">
+                            <label for="usuario">Usuario</label>
+                            <input id="usuario" name="usuario" type="text" required>
+                            <label for="clave">Password</label>
+                            <input id="clave" name="clave" type="password">
+                            <input type="submit" name="validar" id="validar" value="Aceptar">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        Pie de la ventana modal
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer>
             <?php include_once './footer.php'; ?>
         </footer>

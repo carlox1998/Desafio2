@@ -16,8 +16,8 @@
         <div class="col">
             <div class="row tam justify-content-end align-items-center">
                 <form class="form-inline">
-                    <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#entrar" type="button" value="Login">
-                    <input class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registro" type="button" value="Registro">
+                    <input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#login" type="button" value="Login">
+                    <input class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registrar" type="button" value="Registro">
                 </form>
             </div>
         </div>
