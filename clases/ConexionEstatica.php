@@ -115,15 +115,15 @@ class ConexionEstatica {
      * @return \Noticia
      */
     static function ListarJuegosNombre($letra) {
-        $juegos="null";
-        $letra=$letra.'%';
+        $juegos = "null";
+        $letra = $letra . '%';
         $query = "SELECT * FROM juegos where Nombre = ? ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $letra);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -139,13 +139,13 @@ class ConexionEstatica {
      * @return \Noticia
      */
     static function ListarJuegosTematica($tipo) {
-        $juegos="null";
-        $query = "SELECT * FROM juegos where Tematica = '".$tipo."' ";
+        $juegos = "null";
+        $query = "SELECT * FROM juegos where Tematica = '" . $tipo . "' ";
         $stmt = self::$conexion->prepare($query);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"],$fila["Nombre"],$fila["Descripcion"],$fila["Plataforma"] ,$fila["F_Salida"],$fila["E_Minima"],$fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -227,10 +227,11 @@ class ConexionEstatica {
      * @param type $FSalida
      * @param type $EMinima
      */
-    static function InsertarJuego($foto,$no, $des,$plat,$FSalida,$EMinima) {
+    static function InsertarJuego($foto, $no, $des, $plat, $FSalida, $EMinima) {
+        $foto = self::$conexion->escape_string($foto);
         $query = "INSERT INTO juegos (Foto, Nombre, Descripcion,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (?,?,?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("bsssssi", $foto, $no, $des, $tem, $plat, $FSalida, $EMinima);
+        $stmt->bind_param("bssssii", $foto, $no, $des, $plat, $FSalida, $EMinima);
         if ($stmt->execute()) {
             echo 'OK';
         } else {

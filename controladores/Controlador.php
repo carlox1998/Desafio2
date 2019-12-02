@@ -76,13 +76,6 @@ if (isset($_REQUEST['AddJuegoPagina'])) {
     header("location:../vistas/addjuego.php");
 }
 
-if (isset($_REQUEST['AddJuego'])) {
-    ConexionEstatica::AbrirConexion();
-    
-    ConexionEstatica::InsertarJuego($foto, $no, $des, $tem, $plat, $FSalida, $EMinima);
-    header("location:../vistas/addjuego.php");
-    ConexionEstatica::cerrarConexion();
-}
 
 if (isset($_REQUEST['ValidarJuegoPagina'])) {
     ConexionEstatica::AbrirConexion();

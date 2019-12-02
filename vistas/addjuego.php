@@ -72,21 +72,22 @@ and open the template in the editor.
         </div>
         
         <div class="container">
-            <form name="formulario" action="controladores/Controlador.php" method="post">
-                <label for="dni">DNI</label>
-                <input id="dni" name="dni" type="text" required>
-                <label for="correo">Correo</label>
-                <input id="correo" name="correo" type="text" required>
+            <form name="formulario" action="../controladores/ControladorJuego.php" enctype="multipart/form-data" method="post">
+                <label>Foto del Juego</label>
+                <input name="foto" type="file" required>                
                 <label for="nombre">Nombre</label>
                 <input id="nombre" name="nombre" type="text" required>
-                <label for="contra">Password</label>
-                <input id="contra" name="contra" type="password">
-                <label for="contra2">Repite Password</label>
-                <input id="contra2" name="contra2" type="password">
+                <label for="decripcion">Descripcion</label>
+                <input id="decripcion" name="decripcion" type="text" required>
+                <label for="plataforma">Plataforma</label>
+                <input id="plataforma" type="text" name="Plataforma">
+                <label>Fecha Salida</label>
+                <input type="date" name="Fecha_Salida">
+                <label>Edad Minima</label>
+                <input type="number" name="Edad_Minima" min="3" max="18">
                 <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
             </form>
-        </div>
-        
+        </div>        
         <footer>
             <?php include_once './footer.php'; ?>
         </footer>
