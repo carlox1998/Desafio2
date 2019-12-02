@@ -15,17 +15,15 @@ class Juego {
     private $Foto;
     private $Nombre;
     private $Descripcion;
-    private $Tematica;
     private $Plataforma;
     private $F_Salida;
     private $E_Minima;
     private $Validado;
     
-    function __construct($Foto, $Nombre, $Descripcion, $Tematica, $Plataforma, $F_Salida, $E_Minima, $Validado) {
+    function __construct($Foto, $Nombre, $Descripcion, $Plataforma, $F_Salida, $E_Minima, $Validado) {
         $this->Foto = $Foto;
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
-        $this->Tematica = $Tematica;
         $this->Plataforma = $Plataforma;
         $this->F_Salida = $F_Salida;
         $this->E_Minima = $E_Minima;
