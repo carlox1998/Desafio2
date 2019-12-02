@@ -90,7 +90,7 @@ and open the template in the editor.
                         </div>            
                     </div>
                     <div class="modal-body">
-                        <form name="formulario" action="controladores/Controlador.php" method="post">
+                        <form name="formulario" action="../controladores/Controlador.php" method="post">
                             <label for="dni">DNI</label>
                             <input id="dni" name="dni" type="text" required>
                             <label for="correo">Correo</label>
@@ -123,7 +123,7 @@ and open the template in the editor.
                         </div>            
                     </div>
                     <div class="modal-body">
-                        <form name="formulario" action="controladores/Controlador.php" method="post">
+                        <form name="formulario" action="../controladores/Controlador.php" method="post">
                             <label for="usuario">Usuario</label>
                             <input id="usuario" name="usuario" type="text" required>
                             <label for="clave">Password</label>
