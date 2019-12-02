@@ -11,6 +11,11 @@ and open the template in the editor.
    height: 100%;
    width: 100%;
 }
+
+.tambtn{
+    size: 10px;
+}
+
 h1{
     text-align: center;
 }

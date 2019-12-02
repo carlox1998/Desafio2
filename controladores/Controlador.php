@@ -46,6 +46,7 @@ if (isset($_REQUEST['NoticiaDestacada'])) {
 
 if (isset($_REQUEST['ListarNombrePagina'])) {
     unset($_SESSION['juegosTematica']);
+    //$_REQUEST['otro']->value del input submit. Preguntar
     ConexionEstatica::AbrirConexion();
     if(!isset($_REQUEST['Letra'])){
     $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('A');        

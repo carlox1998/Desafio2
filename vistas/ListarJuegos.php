@@ -88,21 +88,94 @@ and open the template in the editor.
                         </a>
                     </div>
                 </nav>
+                <div class="container">
+                    <form action="../controladores/Controlador.php" method="post">
+                        <input type="submit" class="btn-link btn tambtn" value="A" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="B" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="C" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="D" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="E" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="F" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="G" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="H" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="I" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="J" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="K" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="L" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="M" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="N" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="O" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="P" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="Q" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="R" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="S" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="T" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="U" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="V" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="W" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="X" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="Y" name="ListarNombrePagina">
+                        <input type="submit" class="btn-link btn tambtn" value="Z" name="ListarNombrePagina">
+                    </form>
+                </div>
                 <?php
                 if (isset($_SESSION['juegosNombre'])) {
-                    if (strcmp($_SESSION['juegosNombre'], 'null')==0) {
+                    if (strcmp($_SESSION['juegosNombre'], 'null') == 0) {
                         ?>
                         <p>Results Not Found</p>
-                    <?php } else { ?>
-                        <p>Results Found</p>
+                        <?php
+                    } else {
+                        $juegos = $_SESSION['juegosNombre'];
+                        ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Foto</td>
+                                    <td>Nombre</td>
+                                    <td>Edad Minima</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php for ($index = 0; $index < count($juegos); $index++) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $juegos->getFotoBlob; ?></td>
+                                        <td><?php echo $juegos->getNombre; ?></td>
+                                        <td><?php echo $juegos->getEdadMinima; ?></td>
+                                        <td>Boton de ventana con mas contenido</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                         <?php
                     }
                 } else {
-                    if (strcmp($_SESSION['juegosTematica'], 'null')==0) {
+                    if (strcmp($_SESSION['juegosTematica'], 'null') == 0) {
                         ?>
                         <p>Results Not Found</p>
-                    <?php } else { ?>
-                        <p>Results Found</p>
+                    <?php } else {
+                        $juegos = $_SESSION['juegosTematica'];
+                        ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Foto</td>
+                                    <td>Nombre</td>
+                                    <td>Edad Minima</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php for ($index = 0; $index < count($juegos); $index++) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $juegos->getFotoBlob; ?></td>
+                                        <td><?php echo $juegos->getNombre; ?></td>
+                                        <td><?php echo $juegos->getEdadMinima; ?></td>
+                                        <td>Boton de ventana con mas contenido</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                         <?php
                     }
                 }

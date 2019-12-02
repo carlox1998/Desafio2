@@ -116,9 +116,10 @@ class ConexionEstatica {
      */
     static function ListarJuegosNombre($letra) {
         $juegos="null";
+        $letra=$letra.'%';
         $query = "SELECT * FROM juegos where Nombre = ? ";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("s", $letra.'%');
+        $stmt->bind_param("s", $letra);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
