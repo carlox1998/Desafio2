@@ -8,6 +8,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/micss.css"/>
     </head>
     <body>
         <?php
@@ -75,7 +77,7 @@ and open the template in the editor.
         <div class="container">
             <form name="formulario" action="../controladores/ControladorJuego.php" enctype="multipart/form-data" method="post">
                 <label>Foto del Juego</label>
-                <input name="foto" type="file" required>                
+                <input name="imagen" type="file" required>                
                 <label for="nombre">Nombre</label>
                 <input id="nombre" name="nombre" type="text" required>
                 <label for="decripcion">Descripcion</label>
@@ -89,7 +91,7 @@ and open the template in the editor.
                 <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
             </form>
         </div>
-<div id="registrar" class="modal">
+        <div id="registrar" class="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -148,5 +150,9 @@ and open the template in the editor.
         <footer>
             <?php include_once '../footer.php'; ?>
         </footer>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="../files/bootstrap-4.3.1-dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -122,7 +122,7 @@ and open the template in the editor.
                 </div>
                 <?php
                 if (isset($_SESSION['juegosNombre'])) {
-                    if (strcmp($_SESSION['juegosNombre'], 'null') == 0) {
+                    if (!$_SESSION['juegosNombre']) {
                         ?>
                         <p>Results Not Found</p>
                         <?php
@@ -141,9 +141,9 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $juegos->getFotoBlob; ?></td>
-                                        <td><?php echo $juegos->getNombre; ?></td>
-                                        <td><?php echo $juegos->getEdadMinima; ?></td>
+                                        <td><img src="<?php echo '../pruebaimagenes/'.$juegos[$index]->getFoto(); ?>" alt=""></td>
+                                        <td><?php echo $juegos[$index]->getNombre(); ?></td>
+                                        <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td>Boton de ventana con mas contenido</td>
                                     </tr>
                                 <?php } ?>
@@ -155,7 +155,8 @@ and open the template in the editor.
                     if (strcmp($_SESSION['juegosTematica'], 'null') == 0) {
                         ?>
                         <p>Results Not Found</p>
-                    <?php } else {
+                        <?php
+                    } else {
                         $juegos = $_SESSION['juegosTematica'];
                         ?>
                         <table>
@@ -170,9 +171,9 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $juegos->getFotoBlob; ?></td>
-                                        <td><?php echo $juegos->getNombre; ?></td>
-                                        <td><?php echo $juegos->getEdadMinima; ?></td>
+                                        <td><img src=<?php echo $_SERVER['DOCUMENT_ROOT'] . '/TemaPHP/intranet/uploads/'.$juegos[$index]->getFoto(); ?> alt=""></td>
+                                        <td><?php echo $juegos[$index]->getNombre(); ?></td>
+                                        <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td>Boton de ventana con mas contenido</td>
                                     </tr>
                                 <?php } ?>

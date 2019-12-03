@@ -2,6 +2,8 @@
 
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/Const/Constantes.php');
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Usuario.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Juego.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Noticia.php');
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -115,15 +117,15 @@ class ConexionEstatica {
      * @return \Noticia
      */
     static function ListarJuegosNombre($letra) {
-        $juegos = "null";
+        $juegos = false;
         $letra = $letra . '%';
-        $query = "SELECT * FROM juegos where Nombre = ? ";
+        $query = "SELECT * FROM juegos where Nombre Like ? ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $letra);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["Fecha_Salida"], $fila["Edad_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -140,7 +142,7 @@ class ConexionEstatica {
      */
     static function ListarJuegosTematica($tipo) {
         $juegos="null";
-        $query = "SELECT * FROM juegos WHERE Nombre=(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
+        $query = "SELECT * FROM juegos WHERE Nombre Like(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $tipo);
         if ($stmt->execute()) {
@@ -229,10 +231,9 @@ class ConexionEstatica {
      * @param type $EMinima
      */
     static function InsertarJuego($foto, $no, $des, $plat, $FSalida, $EMinima) {
-        $foto = self::$conexion->escape_string($foto);
         $query = "INSERT INTO juegos (Foto, Nombre, Descripcion,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (?,?,?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("bssssii", $foto, $no, $des, $plat, $FSalida, $EMinima);
+        $stmt->bind_param("sssssi", $foto, $no, $des, $plat, $FSalida, $EMinima);
         if ($stmt->execute()) {
             echo 'OK';
         } else {

@@ -49,7 +49,7 @@ if (isset($_REQUEST['ListarNombrePagina'])) {
     //$_REQUEST['otro']->value del input submit. Preguntar
     ConexionEstatica::AbrirConexion();
     if(!isset($_REQUEST['Letra'])){
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('A');        
+    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('M');        
     }
     else{
     $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre($_REQUEST['Letra']);        
