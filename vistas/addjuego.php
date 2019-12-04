@@ -73,7 +73,7 @@ and open the template in the editor.
                 </nav>
             </div>
         </div>
-        
+
         <div class="container">
             <form name="formulario" action="../controladores/ControladorJuego.php" enctype="multipart/form-data" method="post">
                 <label>Foto del Juego</label>
@@ -82,8 +82,13 @@ and open the template in the editor.
                 <input id="nombre" name="nombre" type="text" required>
                 <label for="decripcion">Descripcion</label>
                 <input id="decripcion" name="decripcion" type="text" required>
-                <label for="plataforma">Plataforma</label>
-                <input id="plataforma" type="text" name="Plataforma">
+                <select name="Plataforma" required>
+                    <option  name=pla value=PSP selected>PSP</option>
+                    <option  name=usuario value=PS4>PS4</option>
+                    <option  name=usuario value=Wii>Wii</option>
+                    <option  name=usuario value=NSwitch>Nintendo Switch</option>
+                </select>
+
                 <label>Fecha Salida</label>
                 <input type="date" name="Fecha_Salida">
                 <label>Edad Minima</label>
@@ -150,7 +155,7 @@ and open the template in the editor.
         <footer>
             <?php include_once '../footer.php'; ?>
         </footer>
-        
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="../files/bootstrap-4.3.1-dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

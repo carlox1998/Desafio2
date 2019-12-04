@@ -141,7 +141,7 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><img src="<?php echo '../pruebaimagenes/'.$juegos[$index]->getFoto(); ?>" alt=""></td>
+                                        <td><img class="modimagen" src="<?php $juegos[$index]->getFoto(); ?>" alt="foto"></td>
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td>Boton de ventana con mas contenido</td>

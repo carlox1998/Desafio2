@@ -8,9 +8,24 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+            div.table 
+            {
+                display:table;
+            }
+            form.tr, div.tr
+            {
+                display:table-row;
+            }
+            span.td
+            {
+                display:table-cell;
+            }
+        </style>
     </head>
     <body>
         <?php
+        require_once '../clases/Usuario.php';
         session_start();
         ?>
         <div class="container-fluid color">
@@ -58,11 +73,8 @@ and open the template in the editor.
                                             <input class="btn" type="submit" name="AddJuegoPagina" value="Añadir Juegos">
                                         </form>
                                         <?php if ($usuario->getRol() == 1) { ?>
-                                            <form class="dropdown-item active" action="../controladores/Controlador.php" method="post">
-                                                <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
-                                            </form>
                                             <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
+                                                <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
                                             </form>
                                         <?php } ?>
                                     </div>
@@ -73,75 +85,28 @@ and open the template in the editor.
                 </nav>
             </div>
         </div>
-
+        <?php $usuarios = $_SESSION['usuarios'];?>
         <div class="container">
-            <main>
-                <nav>
-                    <div class="breadcrumb">
-                        <a class="breadcrumb-item" href="index.php">Inicio</a>
-                        <a class="breadcrumb-item" href="#">Validar Juegos</a>
-                    </div>
-                </nav>
-            </main>            
-        </div>
-        <div id="registrar" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            Título
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="dni">DNI</label>
-                            <input id="dni" name="dni" type="text" required>
-                            <label for="correo">Correo</label>
-                            <input id="correo" name="correo" type="text" required>
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" name="nombre" type="text" required>
-                            <label for="contra">Password</label>
-                            <input id="contra" name="contra" type="password">
-                            <label for="contra2">Repite Password</label>
-                            <input id="contra2" name="contra2" type="password">
-                            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
+            <div class="table">
+                <div class="tr">
+                    <span class="td">DNI</span>
+                    <span class="td">Correo</span>
+                    <span class="td">Nombre</span>
+                    <span class="td">Rol</span>
                 </div>
+                <?php for ($index = 0; $index < count($usuarios); $index++) {
+                    ?>
+                <form class="tr" name="formulario" action="../controladores/ControladorAdmin.php" method="post">
+                        <span class="td"><input type="" id="" name="" value="" readonly></span>
+                        <span class="td"><input type="" id="" name="" value="" required></span>
+                        <span class="td"><input type="" id="" name="" value="" required></span>
+                        <span class="td"><input type="submit" name="" value="Modificar"/></span>
+                        <span class="td"><input type="submit" name="" value="Eliminar"/></span>
+                    </form>
+                <?php } ?>
             </div>
-        </div>
-
-        <div id="login" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <div class="alert alert-primary alert-dismissible show fade">
-                                Login:
-                                <button type="button" class="close" data-dismiss="modal">X</button>
-                            </div>
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="usuario">Usuario</label>
-                            <input id="usuario" name="usuario" type="text" required>
-                            <label for="clave">Password</label>
-                            <input id="clave" name="clave" type="password">
-                            <input type="submit" name="validar" id="validar" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <?php include_once '../footer.php'; ?>
-        </footer>
+            <footer>
+                <?php include_once '../footer.php'; ?>
+            </footer>
     </body>
 </html>

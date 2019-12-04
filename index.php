@@ -109,7 +109,7 @@ and open the template in the editor.
             </main>            
         </div>
         <div id="registrar" class="modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="modal-title">
@@ -118,16 +118,26 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
                         <form name="formulario" action="controladores/Controlador.php" method="post">
-                            <label for="dni">DNI</label>
-                            <input id="dni" name="dni" type="text" required>
-                            <label for="correo">Correo</label>
-                            <input id="correo" name="correo" type="text" required>
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" name="nombre" type="text" required>
-                            <label for="contra">Password</label>
-                            <input id="contra" name="contra" type="password">
-                            <label for="contra2">Repite Password</label>
-                            <input id="contra2" name="contra2" type="password">
+                            <div class="form-group">
+                                <label for="dni">DNI</label>
+                                <input id="dni" name="dni" type="text" required> 
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo</label>
+                                <input id="correo" name="correo" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" name="nombre" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contra">Password</label>
+                                <input id="contra" name="contra" type="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="contra2">Repite Password</label>
+                                <input id="contra2" name="contra2" type="password">
+                            </div>
                             <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
                         </form>
                     </div>
@@ -139,22 +149,26 @@ and open the template in the editor.
         </div>
 
         <div id="login" class="modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="modal-title">
                             <div class="alert alert-primary alert-dismissible show fade">
                                 Login:
-                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                <button type="button" class="close align-items-end" data-dismiss="modal">X</button>
                             </div>
                         </div>            
                     </div>
                     <div class="modal-body">
                         <form name="formulario" action="controladores/Controlador.php" method="post">
-                            <label for="usuario">Usuario</label>
-                            <input id="usuario" name="usuario" type="text" required>
-                            <label for="clave">Password</label>
-                            <input id="clave" name="clave" type="password">
+                            <div class="form-group">
+                                <label for="usuario">Usuario</label>
+                                <input id="usuario" name="usuario" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clave">Password</label>
+                                <input id="clave" name="clave" type="password">
+                            </div>
                             <input type="submit" name="validar" id="validar" value="Aceptar">
                         </form>
                     </div>
@@ -165,7 +179,7 @@ and open the template in the editor.
             </div>
         </div>
         <footer>
-            <?php include_once './footer.php'; ?>
+            <?php include_once 'footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

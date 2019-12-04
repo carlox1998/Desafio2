@@ -16,6 +16,15 @@ and open the template in the editor.
     size: 10px;
 }
 
+.modimagen{
+    width: 100px;
+    height: 100px;
+}
+
+.modal-title{
+    width: 100%;
+}
+
 h1{
     text-align: center;
 }

@@ -7,9 +7,9 @@ session_start();
 if (isset($_REQUEST['validar'])) {
     ConexionEstatica::AbrirConexion();
     $clave = $_REQUEST['clave'];
-    //$clavecod = Codificar::codifica($clave);
-    if (ConexionEstatica::ComprobarUsuario($_REQUEST['usuario'], $clave)) {
-        $usuario = ConexionEstatica::obtenerUsuario($_REQUEST['usuario'], $clave);     
+    $clavecod = Codificar::codifica($clave);
+    if (ConexionEstatica::ComprobarUsuario($_REQUEST['usuario'], $clavecod)) {
+        $usuario = ConexionEstatica::obtenerUsuario($_REQUEST['usuario'], $clavecod);     
         $_SESSION['usuario'] = $usuario;
         header("location:../index.php");
     } else {
@@ -23,7 +23,7 @@ if (isset($_REQUEST['registrarse'])) {
     $dn=$_REQUEST['dni'];
     $co=$_REQUEST['correo'];
     $cla=$_REQUEST['contra'];
-    $clavecod = Codificar::codifica($clave);
+    $clavecod = Codificar::codifica($cla);
     $no=$_REQUEST['nombre'];
     ConexionEstatica::InsertarUsuario($dn, $co, $clavecod, $no);      
     header("location:../index.php");    
@@ -32,14 +32,14 @@ if (isset($_REQUEST['registrarse'])) {
 
 if (isset($_REQUEST['UltimaNoticia'])) {
     ConexionEstatica::AbrirConexion();
-    $_SESSION['noticias']= ConexionEstatica::ObtenerNoticiasNuevas();
+    //$_SESSION['noticias']= ConexionEstatica::ObtenerNoticiasNuevas();
     header("location:../vistas/noticias.php");
     ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['NoticiaDestacada'])) {
     ConexionEstatica::AbrirConexion();
-    $_SESSION['noticias']= ConexionEstatica::ObtenerNoticiasDestacadas();
+    //$_SESSION['noticias']= ConexionEstatica::ObtenerNoticiasDestacadas();
     header("location:../vistas/noticias.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -49,7 +49,7 @@ if (isset($_REQUEST['ListarNombrePagina'])) {
     //$_REQUEST['otro']->value del input submit. Preguntar
     ConexionEstatica::AbrirConexion();
     if(!isset($_REQUEST['Letra'])){
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('M');        
+    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('F');        
     }
     else{
     $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre($_REQUEST['Letra']);        
