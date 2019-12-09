@@ -3,12 +3,12 @@
 <div class="row tam">
     <div class="col">
         <div class="media">
-             <?php
-             $n=getcwd();             
-             if (strcmp($n,'C:\xampp\htdocs\TemaPHP\Ejercicios\Desafio2')==0) { ?>
-            <img src="imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
-             <?php }else{ ?>
-            <img src="../imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
+            <?php            
+            if ($_SESSION['lugar']=='index') {
+                ?>
+                <img src="imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
+            <?php } else { ?>
+                <img src="../imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
             <?php } ?>
         </div>
     </div>
@@ -21,17 +21,29 @@
                 </form>
             </div>
         </div>
-    <?php } else {
-        ?>
-        <div class="col">
-            <div class="row tam justify-content-end align-items-center">
-                <form action="controladores/Controlador.php" method="post">
-                    <input type="submit" class="btn btn-primary btn-sm " value="Cerrar Sesion" name="CerrarSesion">
-                </form>
-            </div>
-        </div>
         <?php
+    } else {
+        if ($_SESSION['lugar']=='index') {
+            ?>
+            <div class="col">
+                <div class="row tam justify-content-end align-items-center">
+                    <form action="controladores/Controlador.php" method="post">
+                        <input type="submit" class="btn btn-primary btn-sm " value="Cerrar Sesion" name="CerrarSesion">
+                    </form>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="col">
+                <div class="row tam justify-content-end align-items-center">
+                    <form action="../controladores/Controlador.php" method="post">
+                        <input type="submit" class="btn btn-primary btn-sm " value="Cerrar Sesion" name="CerrarSesion">
+                    </form>
+                </div>
+            </div>
+            <?php
+        }
     }
     ?>
 </div>
+<?php include_once 'Modales.php'; ?>
 

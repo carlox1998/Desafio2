@@ -80,7 +80,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Tematica"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"],$fila["Tipo"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["Fecha_Salida"], $fila["Edad_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -125,7 +125,7 @@ class ConexionEstatica {
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["Fecha_Salida"], $fila["Edad_Minima"], $fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"],$fila["Tipo"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["Fecha_Salida"], $fila["Edad_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -134,6 +134,22 @@ class ConexionEstatica {
 
         return $juegos;
     }
+    
+    static function obtenerTematicas() {
+        $query = "SELECT Nombre FROM Tematicas";
+        $stmt = self::$conexion->prepare($query);
+        if ($stmt->execute()) {
+            $resultado = $stmt->get_result();
+            while ($fila = $resultado->fetch_assoc()) {
+                $tematicas[] = $fila["Nombre"];
+            }
+        } else {
+            echo 'Fallo';
+        }
+        $stmt->close();
+
+        return $tematicas;
+    }
 
     /**
      * Funcion que obtiene los juegos segun la tematica que han pedido los usuarios
@@ -141,14 +157,14 @@ class ConexionEstatica {
      * @return \Noticia
      */
     static function ListarJuegosTematica($tipo) {
-        $juegos="null";
-        $query = "SELECT * FROM juegos WHERE Nombre Like(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
+        $juegos=false;
+        $query = "SELECT * FROM juegos WHERE Nombre IN(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $tipo);
         if ($stmt->execute()) {
             $resultado = $stmt->get_result();
             while ($fila = $resultado->fetch_assoc()) {
-                $juegos[] = new Juego($fila["Foto"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["F_Salida"], $fila["E_Minima"], $fila["Validado"]);
+                $juegos[] = new Juego($fila["Foto"],$fila["Tipo"], $fila["Nombre"], $fila["Descripcion"], $fila["Plataforma"], $fila["Fecha_Salida"], $fila["Edad_Minima"], $fila["Validado"]);
             }
         } else {
             echo 'Fallo';
@@ -230,10 +246,10 @@ class ConexionEstatica {
      * @param type $FSalida
      * @param type $EMinima
      */
-    static function InsertarJuego($foto, $no, $des, $plat, $FSalida, $EMinima) {
-        $query = "INSERT INTO juegos (Foto, Nombre, Descripcion,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES (?,?,?,?,?,?,0)";
+    static function InsertarJuego($foto,$tipo, $no, $des, $plat, $FSalida, $EMinima) {
+        $query = "INSERT INTO juegos (Foto,Tipo, Nombre, Descripcion,Plataforma,Fecha_Salida,Edad_Minima,Validado) VALUES ('".$foto."',?,?,?,?,?,?,0)";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("sssssi", $foto, $no, $des, $plat, $FSalida, $EMinima);
+        $stmt->bind_param("sssssi",$tipo, $no, $des, $plat, $FSalida, $EMinima);
         if ($stmt->execute()) {
             echo 'OK';
         } else {

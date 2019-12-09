@@ -15,6 +15,7 @@ and open the template in the editor.
         <?php
         require_once '../clases/Usuario.php';
         session_start();
+        $_SESSION['lugar']='otra';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -26,7 +27,7 @@ and open the template in the editor.
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="index.php" class="nav-link">Inicio</a>
+                                <a href="../index.php" class="nav-link">Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Noticias</button>
@@ -39,7 +40,7 @@ and open the template in the editor.
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item active dropdown">
+                            <li class="nav-item  dropdown">
                                 <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Listar Juegos</button>
                                 <div class="dropdown-menu">
                                     <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
@@ -54,7 +55,7 @@ and open the template in the editor.
                             if (isset($_SESSION['usuario'])) {
                                 $usuario = $_SESSION['usuario'];
                                 ?>
-                                <li class="nav-item dropdown">
+                                <li class="nav-item active dropdown">
                                     <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
                                         <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
@@ -63,6 +64,9 @@ and open the template in the editor.
                                         <?php if ($usuario->getRol() == 1) { ?>
                                             <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
                                                 <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
+                                            </form>
+                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
                                             </form>
                                         <?php } ?>
                                     </div>
@@ -75,83 +79,41 @@ and open the template in the editor.
         </div>
 
         <div class="container">
+            <div class="breadcrumb">
+                        <a class="breadcrumb-item" href="../index.php">Inicio</a>
+                        <a class="breadcrumb-item" href="#">Añadir Juegos</a>
+                    </div>
+            
             <form name="formulario" action="../controladores/ControladorJuego.php" enctype="multipart/form-data" method="post">
-                <label>Foto del Juego</label>
-                <input name="imagen" type="file" required>                
-                <label for="nombre">Nombre</label>
-                <input id="nombre" name="nombre" type="text" required>
-                <label for="decripcion">Descripcion</label>
-                <input id="decripcion" name="decripcion" type="text" required>
-                <select name="Plataforma" required>
-                    <option  name=pla value=PSP selected>PSP</option>
-                    <option  name=usuario value=PS4>PS4</option>
-                    <option  name=usuario value=Wii>Wii</option>
-                    <option  name=usuario value=NSwitch>Nintendo Switch</option>
-                </select>
-
-                <label>Fecha Salida</label>
-                <input type="date" name="Fecha_Salida">
-                <label>Edad Minima</label>
-                <input type="number" name="Edad_Minima" min="3" max="18">
+                <div class="form-group">
+                    <label>Foto del Juego</label>
+                    <input id="imagen" name="imagen" type="file" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" required>
+                </div><div class="form-group">
+                    <label for="decripcion">Descripcion</label>
+                    <input id="decripcion" name="decripcion" type="text" required>
+                </div><div class="form-group">
+                    Plataforma:<select name="Plataforma" required>
+                        <option  name=pla value=PSP selected>PSP</option>
+                        <option  name=usuario value=PS4>PS4</option>
+                        <option  name=usuario value=Wii>Wii</option>
+                        <option  name=usuario value=NSwitch>Nintendo Switch</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha Salida</label>
+                    <input type="date" name="Fecha_Salida">
+                </div>
+                <div class="form-group">
+                    <label>Edad Minima</label>
+                    <input type="number" name="Edad_Minima" min="3" max="18">
+                </div>
                 <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
             </form>
-        </div>
-        <div id="registrar" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            Título
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="dni">DNI</label>
-                            <input id="dni" name="dni" type="text" required>
-                            <label for="correo">Correo</label>
-                            <input id="correo" name="correo" type="text" required>
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" name="nombre" type="text" required>
-                            <label for="contra">Password</label>
-                            <input id="contra" name="contra" type="password">
-                            <label for="contra2">Repite Password</label>
-                            <input id="contra2" name="contra2" type="password">
-                            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="login" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <div class="alert alert-primary alert-dismissible show fade">
-                                Login:
-                                <button type="button" class="close" data-dismiss="modal">X</button>
-                            </div>
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="usuario">Usuario</label>
-                            <input id="usuario" name="usuario" type="text" required>
-                            <label for="clave">Password</label>
-                            <input id="clave" name="clave" type="password">
-                            <input type="submit" name="validar" id="validar" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>        
+        </div>   
         <footer>
             <?php include_once '../footer.php'; ?>
         </footer>

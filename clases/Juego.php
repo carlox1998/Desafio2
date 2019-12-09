@@ -13,6 +13,7 @@
  */
 class Juego {
     private $Foto;
+    private $tipo;
     private $Nombre;
     private $Descripcion;
     private $Plataforma;
@@ -20,14 +21,23 @@ class Juego {
     private $E_Minima;
     private $Validado;
     
-    function __construct($Foto, $Nombre, $Descripcion, $Plataforma, $F_Salida, $E_Minima, $Validado) {
+    function __construct($Foto,$tipo, $Nombre, $Descripcion, $Plataforma, $F_Salida, $E_Minima, $Validado) {
         $this->Foto = $Foto;
+        $this->tipo = $tipo;
         $this->Nombre = $Nombre;
         $this->Descripcion = $Descripcion;
         $this->Plataforma = $Plataforma;
         $this->F_Salida = $F_Salida;
         $this->E_Minima = $E_Minima;
         $this->Validado = $Validado;
+    }
+    
+    function getTipo() {
+        return $this->tipo;
+    }
+
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
     }
     
     function getFoto() {
@@ -92,6 +102,10 @@ class Juego {
 
     function setValidado($Validado) {
         $this->Validado = $Validado;
+    }
+    
+    function obtenerFoto() {        
+        echo $this->Foto;
     }
 
 }

@@ -10,6 +10,9 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <?php
+        session_start();
+        $_SESSION['lugar']='otra';?>
         <p>Error 404 tu correo o clave no se encuentra en nuestra Base de Datos, asegurate de que esten bien.</p>
         <form action="../index.php">
             <input type="submit" value="Volver">

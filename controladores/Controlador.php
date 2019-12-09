@@ -46,14 +46,17 @@ if (isset($_REQUEST['NoticiaDestacada'])) {
 
 if (isset($_REQUEST['ListarNombrePagina'])) {
     unset($_SESSION['juegosTematica']);
-    //$_REQUEST['otro']->value del input submit. Preguntar
     ConexionEstatica::AbrirConexion();
-    if(!isset($_REQUEST['Letra'])){
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('F');        
-    }
-    else{
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre($_REQUEST['Letra']);        
-    }
+    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('A');        
+    header("location:../vistas/ListarJuegos.php");
+    ConexionEstatica::cerrarConexion();
+}
+
+if (isset($_REQUEST['ListarNombre'])) {
+    unset($_SESSION['juegosTematica']);
+    $n=$_REQUEST['ListarNombre'];
+    ConexionEstatica::AbrirConexion();
+    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre($n);
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -61,13 +64,17 @@ if (isset($_REQUEST['ListarNombrePagina'])) {
 if (isset($_REQUEST['ListarTematicaPagina'])) {
     unset($_SESSION['juegosNombre']);
     ConexionEstatica::AbrirConexion();
-    if(!isset($_REQUEST['Letra'])){
-    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica('Todos');         
-    }
-    else{
-    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica($_REQUEST['Tematica']);        
-    }
-    
+    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica('Accion');        
+    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
+    header("location:../vistas/ListarJuegos.php");
+    ConexionEstatica::cerrarConexion();
+}
+
+if (isset($_REQUEST['ListarTematica'])) {
+    unset($_SESSION['juegosNombre']);
+    ConexionEstatica::AbrirConexion();    
+    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica($_REQUEST['ListarTematica']);        
+    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -76,10 +83,19 @@ if (isset($_REQUEST['AddJuegoPagina'])) {
     header("location:../vistas/addjuego.php");
 }
 
+if (isset($_REQUEST['ModUsuarioPagina'])) {
+    ConexionEstatica::AbrirConexion();
+    $usuario=$_SESSION['usuario'];
+    $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());
+    header("location:../vistas/ListarUsuarios.php");
+    ConexionEstatica::cerrarConexion();
+}
+
 
 if (isset($_REQUEST['ValidarJuegoPagina'])) {
     ConexionEstatica::AbrirConexion();
     $_SESSION['juegosValidar']=ConexionEstatica::ObtenerJuegosValidar();
+    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
     header("location:../vistas/ValidarJuego.php");
     ConexionEstatica::cerrarConexion();
 }

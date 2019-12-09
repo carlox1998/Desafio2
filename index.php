@@ -32,6 +32,7 @@ and open the template in the editor.
         <?php
         require_once './clases/Usuario.php';
         session_start();
+        $_SESSION['lugar']='index';
         ?>
         <div class="container-fluid color">
             <?php include_once 'header.php'; ?>
@@ -81,6 +82,9 @@ and open the template in the editor.
                                             <form class="dropdown-item" action="controladores/Controlador.php" method="post">
                                                 <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
                                             </form>
+                                            <form class="dropdown-item" action="controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
+                                            </form>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -106,77 +110,11 @@ and open the template in the editor.
                 <p>Bienvenidos a "Insertar nombre de la pagina" un lugar dedicado a VideoJuegos tanto antiguos como las nuevos incorporaciones a este sector.</p>
                 <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados o ver las ultimas incorporaciones de estos.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.</p>
                 <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas desde antiguos hasta los de ahora.</p>
+                <p>Insertando mas texto mas adelante</p>
+                <p>UUUUUHHHHHHHH el tobogan feliiiiz</p>
+                <p>NAnanananananananananananananananananananananananannanananananananananana</p>
+                <p>Bart se que puedes leerme la mente MiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiauMiau</p>
             </main>            
-        </div>
-        <div id="registrar" class="modal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            Título
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="controladores/Controlador.php" method="post">
-                            <div class="form-group">
-                                <label for="dni">DNI</label>
-                                <input id="dni" name="dni" type="text" required> 
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo</label>
-                                <input id="correo" name="correo" type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input id="nombre" name="nombre" type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contra">Password</label>
-                                <input id="contra" name="contra" type="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="contra2">Repite Password</label>
-                                <input id="contra2" name="contra2" type="password">
-                            </div>
-                            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="login" class="modal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <div class="alert alert-primary alert-dismissible show fade">
-                                Login:
-                                <button type="button" class="close align-items-end" data-dismiss="modal">X</button>
-                            </div>
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="controladores/Controlador.php" method="post">
-                            <div class="form-group">
-                                <label for="usuario">Usuario</label>
-                                <input id="usuario" name="usuario" type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="clave">Password</label>
-                                <input id="clave" name="clave" type="password">
-                            </div>
-                            <input type="submit" name="validar" id="validar" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
         </div>
         <footer>
             <?php include_once 'footer.php'; ?>

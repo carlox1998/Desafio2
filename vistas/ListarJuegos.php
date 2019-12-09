@@ -16,6 +16,7 @@ and open the template in the editor.
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
         session_start();
+        $_SESSION['lugar']='otra';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -65,6 +66,9 @@ and open the template in the editor.
                                             <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
                                                 <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
                                             </form>
+                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
+                                            </form>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -90,38 +94,38 @@ and open the template in the editor.
                         </a>
                     </div>
                 </nav>
-                <div class="container">
-                    <form action="../controladores/Controlador.php" method="post">
-                        <input type="submit" class="btn-link btn tambtn" value="A" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="B" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="C" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="D" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="E" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="F" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="G" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="H" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="I" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="J" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="K" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="L" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="M" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="N" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="O" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="P" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="Q" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="R" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="S" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="T" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="U" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="V" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="W" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="X" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="Y" name="ListarNombrePagina">
-                        <input type="submit" class="btn-link btn tambtn" value="Z" name="ListarNombrePagina">
-                    </form>
-                </div>
-                <?php
-                if (isset($_SESSION['juegosNombre'])) {
+                <?php if (isset($_SESSION['juegosNombre'])) { ?>
+                    <div class="container">
+                        <form action="../controladores/Controlador.php" method="post">
+                            <input type="submit" class="btn-link btn tambtn" value="A" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="B" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="C" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="D" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="E" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="F" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="G" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="H" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="I" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="J" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="K" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="L" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="M" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="N" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="O" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="P" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="Q" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="R" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="S" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="T" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="U" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="V" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="W" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="X" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="Y" name="ListarNombre">
+                            <input type="submit" class="btn-link btn tambtn" value="Z" name="ListarNombre">
+                        </form>
+                    </div>
+                    <?php
                     if (!$_SESSION['juegosNombre']) {
                         ?>
                         <p>Results Not Found</p>
@@ -141,7 +145,8 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><img class="modimagen" src="<?php $juegos[$index]->getFoto(); ?>" alt="foto"></td>
+                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo()?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>                                        
+                                        <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto(); ?>" alt="foto"></td>-->
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td>Boton de ventana con mas contenido</td>
@@ -152,13 +157,26 @@ and open the template in the editor.
                         <?php
                     }
                 } else {
-                    if (strcmp($_SESSION['juegosTematica'], 'null') == 0) {
+                    ?>
+                    <div class="container">
+                        <form action="../controladores/Controlador.php" method="post">
+                            <input type="submit" class="btn-link btn tambtn" value="Accion" name="ListarTematica">
+                            <input type="submit" class="btn-link btn tambtn" value="Plataformas" name="ListarTematica">
+                            <input type="submit" class="btn-link btn tambtn" value="Peleas" name="ListarTematicaPagina">
+                            <input type="submit" class="btn-link btn tambtn" value="Realidad Virtual" name="ListarTematica">
+                            <input type="submit" class="btn-link btn tambtn" value="Deportes" name="ListarTematica">
+                            <input type="submit" class="btn-link btn tambtn" value="Carreras" name="ListarTematica">
+                        </form>
+                    </div>
+                    <?php
+                    if (!$_SESSION['juegosTematica']) {
                         ?>
                         <p>Results Not Found</p>
                         <?php
                     } else {
                         $juegos = $_SESSION['juegosTematica'];
                         ?>
+
                         <table>
                             <thead>
                                 <tr>
@@ -171,7 +189,7 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><img src=<?php echo $_SERVER['DOCUMENT_ROOT'] . '/TemaPHP/intranet/uploads/'.$juegos[$index]->getFoto(); ?> alt=""></td>
+                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo()?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td>Boton de ventana con mas contenido</td>
@@ -185,64 +203,8 @@ and open the template in the editor.
                 ?>
             </main>            
         </div>
-        <div id="registrar" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            Título
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="dni">DNI</label>
-                            <input id="dni" name="dni" type="text" required>
-                            <label for="correo">Correo</label>
-                            <input id="correo" name="correo" type="text" required>
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" name="nombre" type="text" required>
-                            <label for="contra">Password</label>
-                            <input id="contra" name="contra" type="password">
-                            <label for="contra2">Repite Password</label>
-                            <input id="contra2" name="contra2" type="password">
-                            <input type="submit" name="registrarse" id="registrarse" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="login" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <div class="alert alert-primary alert-dismissible show fade">
-                                Login:
-                                <button type="button" class="close" data-dismiss="modal">X</button>
-                            </div>
-                        </div>            
-                    </div>
-                    <div class="modal-body">
-                        <form name="formulario" action="../controladores/Controlador.php" method="post">
-                            <label for="usuario">Usuario</label>
-                            <input id="usuario" name="usuario" type="text" required>
-                            <label for="clave">Password</label>
-                            <input id="clave" name="clave" type="password">
-                            <input type="submit" name="validar" id="validar" value="Aceptar">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Pie de la ventana modal
-                    </div>
-                </div>
-            </div>
-        </div>
         <footer class="color">
-            <?php include_once '../footer.php'; ?>
+<?php include_once '../footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
