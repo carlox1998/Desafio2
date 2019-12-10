@@ -23,16 +23,30 @@ if (isset($_REQUEST['ModificarUsuario'])) {
     }
     ConexionEstatica::ModificarUsuario($_REQUEST['Correo'], $_REQUEST['Nombre'], $rol);
     $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());  
-    header("location:../index.php");    
+    header("location:../vistas/ListarUsuarios.php");    
+    ConexionEstatica::cerrarConexion();
+}
+if (isset($_REQUEST['AddJuego'])) {
+    ConexionEstatica::AbrirConexion();
+    ConexionEstatica::ValidarJuegos($_REQUEST['Nombre']);
+    $_SESSION['juegosValidar']=ConexionEstatica::ObtenerJuegosValidar();
+    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();    
+    header("location:../vistas/ValidarJuego.php");
+    ConexionEstatica::cerrarConexion();
+}
+
+if (isset($_REQUEST['EliminarJuego'])) {
+    ConexionEstatica::AbrirConexion();
+    ConexionEstatica::EliminarJuego($_REQUEST['Nombre']);
+    $_SESSION['juegosValidar']=ConexionEstatica::ObtenerJuegosValidar();
+    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
+    header("location:../vistas/ValidarJuego.php");
     ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['AddTematica'])) {
     ConexionEstatica::AbrirConexion();
-    
-    
-    
-    
+    ConexionEstatica::InsertarTematica($_REQUEST['Nombre'], $_REQUEST['Tematica']);    
     header("location:../vistas/ValidarJuego.php");
     ConexionEstatica::cerrarConexion();
 }

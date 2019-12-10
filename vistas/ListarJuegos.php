@@ -16,7 +16,7 @@ and open the template in the editor.
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
         session_start();
-        $_SESSION['lugar']='otra';
+        $_SESSION['lugar']='ListarJuegos';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -65,14 +65,22 @@ and open the template in the editor.
                                         <?php if ($usuario->getRol() == 1) { ?>
                                             <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
                                                 <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
-                                            </form>
-                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
-                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
-                                            </form>
+                                            </form>                                        
                                         <?php } ?>
                                     </div>
                                 </li>
-                            <?php } ?>
+                                <?php if ($usuario->getRol() == 1) { ?>
+                                    <li class="nav-item dropdown">
+                                        <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Administrar Usuarios</button>
+                                        <div class="dropdown-menu">
+                                            <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
+                                            </form>
+                                        </div>
+                                    </li>
+                                <?php }
+                            }
+                            ?>
                         </ul>
                     </div>
                 </nav>

@@ -1,9 +1,13 @@
 <?php
 
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/Const/Constantes.php');
+//require_once '../Const/Constantes.php';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Usuario.php');
+//require_once 'Usuario.php';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Juego.php');
+//require_once 'Juego.php';
 require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/TemaPHP/Ejercicios/Desafio2/clases/Noticia.php');
+//require_once 'Noticia.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -119,7 +123,7 @@ class ConexionEstatica {
     static function ListarJuegosNombre($letra) {
         $juegos = false;
         $letra = $letra . '%';
-        $query = "SELECT * FROM juegos where Nombre Like ? ";
+        $query = "SELECT * FROM juegos where Nombre Like ? and Validado= 1";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $letra);
         if ($stmt->execute()) {
@@ -158,7 +162,7 @@ class ConexionEstatica {
      */
     static function ListarJuegosTematica($tipo) {
         $juegos=false;
-        $query = "SELECT * FROM juegos WHERE Nombre IN(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) ";
+        $query = "SELECT * FROM juegos WHERE Nombre IN(SELECT Id_juego FROM juegostematica WHERE Id_tematica=(SELECT Id FROM tematicas WHERE Nombre= ? )) and Validado= 1 ";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $tipo);
         if ($stmt->execute()) {
@@ -257,6 +261,18 @@ class ConexionEstatica {
         }
         $stmt->close();
     }
+    
+    static function InsertarTematica($Idjuego, $Tematica) {
+        $query = "INSERT INTO juegostematica (Id_juego, Id_tematica) VALUES (?,?)";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("si",$Idjuego, $Tematica);
+        if ($stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
 
     /**
      * Funcion para eliminar Usuarios
@@ -264,6 +280,15 @@ class ConexionEstatica {
      */
     static function EliminarUsuario($correo) {
         $query = "DELETE FROM usuario WHERE Correo = '" . $correo . "'";
+        if (self::$conexion->query($query)) {
+            echo "Registro borrado";
+        } else {
+            echo "Error al borrar: " . mysqli_error(ConexionEstatica::$conexion);
+        }
+    }
+    
+    static function EliminarJuego($nombre) {
+        $query = "DELETE FROM juegos WHERE Nombre = '" . $nombre . "'";
         if (self::$conexion->query($query)) {
             echo "Registro borrado";
         } else {
@@ -295,8 +320,8 @@ class ConexionEstatica {
      * @param type $nombre
      * @param type $rol
      */
-    static function ValidarJuegos($id, $nombre, $rol) {
-        $query = "Update juegos set Validado= 1 WHERE Id = '" . $id . "'";
+    static function ValidarJuegos($nombre) {
+        $query = "Update juegos set Validado= 1 WHERE Nombre = '" . $nombre . "'";
         $stmt = self::$conexion->prepare($query);
         if ($stmt->execute()) {
             echo 'OK';

@@ -7,7 +7,7 @@ ConexionEstatica::AbrirConexion();
 if (!isset($_FILES["imagen"]) || $_FILES["imagen"]["error"] > 0) {
     echo "Ha ocurrido un error.";
 } else {
-    $permitidos = array("image/jpg", "image/jpeg", "image/png");
+    $permitidos = array("image/jpg", "image/jpeg");
     $limite_kb = 16384;
 
     if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024) {

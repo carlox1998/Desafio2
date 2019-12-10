@@ -1,4 +1,5 @@
 <?php
+
 require_once '../clases/ConexionEstatica.php';
 require_once '../clases/Usuario.php';
 require_once '../clases/Codificar.php';
@@ -9,24 +10,32 @@ if (isset($_REQUEST['validar'])) {
     $clave = $_REQUEST['clave'];
     $clavecod = Codificar::codifica($clave);
     if (ConexionEstatica::ComprobarUsuario($_REQUEST['usuario'], $clavecod)) {
-        $usuario = ConexionEstatica::obtenerUsuario($_REQUEST['usuario'], $clavecod);     
+        $usuario = ConexionEstatica::obtenerUsuario($_REQUEST['usuario'], $clavecod);
         $_SESSION['usuario'] = $usuario;
-        header("location:../index.php");
+        if ($_SESSION['lugar'] == 'index') {
+            header("location:../index.php");
+        } else {
+            header("location:../vistas/" . $_SESSION['lugar'] . ".php");
+        }
     } else {
         header("location:../vistas/error.php");
     }
-    ConexionEstatica::cerrarConexion();    
+    ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['registrarse'])) {
     ConexionEstatica::AbrirConexion();
-    $dn=$_REQUEST['dni'];
-    $co=$_REQUEST['correo'];
-    $cla=$_REQUEST['contra'];
+    $dn = $_REQUEST['dni'];
+    $co = $_REQUEST['correo'];
+    $cla = $_REQUEST['contra'];
     $clavecod = Codificar::codifica($cla);
-    $no=$_REQUEST['nombre'];
-    ConexionEstatica::InsertarUsuario($dn, $co, $clavecod, $no);      
-    header("location:../index.php");    
+    $no = $_REQUEST['nombre'];
+    ConexionEstatica::InsertarUsuario($dn, $co, $clavecod, $no);
+    if ($_SESSION['lugar'] == 'index') {
+        header("location:../index.php");
+    } else {
+        header("location:../vistas/" . $_SESSION['lugar'] . ".php");
+    }
     ConexionEstatica::cerrarConexion();
 }
 
@@ -47,16 +56,16 @@ if (isset($_REQUEST['NoticiaDestacada'])) {
 if (isset($_REQUEST['ListarNombrePagina'])) {
     unset($_SESSION['juegosTematica']);
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre('A');        
+    $_SESSION['juegosNombre'] = ConexionEstatica::ListarJuegosNombre('A');
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['ListarNombre'])) {
     unset($_SESSION['juegosTematica']);
-    $n=$_REQUEST['ListarNombre'];
+    $n = $_REQUEST['ListarNombre'];
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosNombre']= ConexionEstatica::ListarJuegosNombre($n);
+    $_SESSION['juegosNombre'] = ConexionEstatica::ListarJuegosNombre($n);
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -64,17 +73,17 @@ if (isset($_REQUEST['ListarNombre'])) {
 if (isset($_REQUEST['ListarTematicaPagina'])) {
     unset($_SESSION['juegosNombre']);
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica('Accion');        
-    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
+    $_SESSION['juegosTematica'] = ConexionEstatica::ListarJuegosTematica('Accion');
+    $_SESSION['Tematica'] = ConexionEstatica::obtenerTematicas();
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
 
 if (isset($_REQUEST['ListarTematica'])) {
     unset($_SESSION['juegosNombre']);
-    ConexionEstatica::AbrirConexion();    
-    $_SESSION['juegosTematica']= ConexionEstatica::ListarJuegosTematica($_REQUEST['ListarTematica']);        
-    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
+    ConexionEstatica::AbrirConexion();
+    $_SESSION['juegosTematica'] = ConexionEstatica::ListarJuegosTematica($_REQUEST['ListarTematica']);
+    $_SESSION['Tematica'] = ConexionEstatica::obtenerTematicas();
     header("location:../vistas/ListarJuegos.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -85,8 +94,8 @@ if (isset($_REQUEST['AddJuegoPagina'])) {
 
 if (isset($_REQUEST['ModUsuarioPagina'])) {
     ConexionEstatica::AbrirConexion();
-    $usuario=$_SESSION['usuario'];
-    $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());
+    $usuario = $_SESSION['usuario'];
+    $_SESSION['usuarios'] = ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());
     header("location:../vistas/ListarUsuarios.php");
     ConexionEstatica::cerrarConexion();
 }
@@ -94,8 +103,8 @@ if (isset($_REQUEST['ModUsuarioPagina'])) {
 
 if (isset($_REQUEST['ValidarJuegoPagina'])) {
     ConexionEstatica::AbrirConexion();
-    $_SESSION['juegosValidar']=ConexionEstatica::ObtenerJuegosValidar();
-    $_SESSION['Tematica']= ConexionEstatica::obtenerTematicas();
+    $_SESSION['juegosValidar'] = ConexionEstatica::ObtenerJuegosValidar();
+    $_SESSION['Tematica'] = ConexionEstatica::obtenerTematicas();
     header("location:../vistas/ValidarJuego.php");
     ConexionEstatica::cerrarConexion();
 }

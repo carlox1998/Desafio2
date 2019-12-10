@@ -32,7 +32,7 @@ and open the template in the editor.
         <?php
         require_once './clases/Usuario.php';
         session_start();
-        $_SESSION['lugar']='index';
+        $_SESSION['lugar'] = 'index';
         ?>
         <div class="container-fluid color">
             <?php include_once 'header.php'; ?>
@@ -81,14 +81,22 @@ and open the template in the editor.
                                         <?php if ($usuario->getRol() == 1) { ?>
                                             <form class="dropdown-item" action="controladores/Controlador.php" method="post">
                                                 <input class="btn" type="submit" name="ValidarJuegoPagina" value="Validar Juegos">
-                                            </form>
-                                            <form class="dropdown-item" action="controladores/Controlador.php" method="post">
-                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
-                                            </form>
+                                            </form>                                        
                                         <?php } ?>
                                     </div>
                                 </li>
-                            <?php } ?>
+                                <?php if ($usuario->getRol() == 1) { ?>
+                                    <li class="nav-item dropdown">
+                                        <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Administrar Usuarios</button>
+                                        <div class="dropdown-menu">
+                                            <form class="dropdown-item" action="controladores/Controlador.php" method="post">
+                                                <input class="btn" type="submit" name="ModUsuarioPagina" value="Listar Usuarios">
+                                            </form>
+                                        </div>
+                                    </li>
+                                <?php }
+                            }
+                            ?>
                         </ul>
                     </div>
                 </nav>
@@ -101,12 +109,8 @@ and open the template in the editor.
                         <a class="breadcrumb-item" href="index.php">Inicio</a>
                     </div>
                 </nav>
-                <!--<div class="col">
-                    <div class="media">
-                        <img src="imagen/imagen.jpg" width="100%" height="360px" alt="logo" class="icon"/>
-                    </div>
-                </div>-->
-                <h1>"Nombre de la pagina"</h1>
+                <h3>"Creias que era el nombre de la pagina"</h3>
+                <h3>"Pero era yo DIO!!!"</h3>
                 <p>Bienvenidos a "Insertar nombre de la pagina" un lugar dedicado a VideoJuegos tanto antiguos como las nuevos incorporaciones a este sector.</p>
                 <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados o ver las ultimas incorporaciones de estos.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.</p>
                 <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas desde antiguos hasta los de ahora.</p>
@@ -117,7 +121,7 @@ and open the template in the editor.
             </main>            
         </div>
         <footer>
-            <?php include_once 'footer.php'; ?>
+<?php include_once 'footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
