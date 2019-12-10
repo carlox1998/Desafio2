@@ -122,9 +122,16 @@ and open the template in the editor.
             </div>
         </div>
         
-        <script src="//rss.bloople.net/?url=https%3A%2F%2Fkotaku.com%2Frss&detail=-1&limit=5&showtitle=false&type=js"></script>
         
-        <script src="//rss.bloople.net/?url=https%3A%2F%2Fwww.3djuegos.com%2Funiverso%2Frss%2Frss.php&detail=-1&limit=5&showtitle=false&type=js"></script>
+        <div class="container mt-5">
+            <script src="//rss.bloople.net/?url=https%3A%2F%2Fwww.gamereactor.es%2Frss%2Frss.php%3Ftexttype%3D4&detail=10&limit=4&showtitle=false&type=js"></script>
+        </div>
+        
+        <div class="container-fluid"> 
+            <footer>
+                <?php include_once '../footer.php'; ?>
+            </footer>
+        </div>
         
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

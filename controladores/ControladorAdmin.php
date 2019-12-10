@@ -16,7 +16,7 @@ if (isset($_REQUEST['EliminarUsuario'])) {
 if (isset($_REQUEST['ModificarUsuario'])) {
     ConexionEstatica::AbrirConexion();
     $usuario=$_SESSION['usuario'];
-    if(strcmp($_REQUEST['Rol'], 'Usuario')==0){
+    if(strcmp($_REQUEST['CambiarRol'], 'Usuario')==0){
         $rol=0;
     }else{
         $rol=1;
@@ -26,6 +26,21 @@ if (isset($_REQUEST['ModificarUsuario'])) {
     header("location:../vistas/ListarUsuarios.php");    
     ConexionEstatica::cerrarConexion();
 }
+
+if (isset($_REQUEST['CambiarRol'])) {
+    ConexionEstatica::AbrirConexion();
+    $usuario=$_SESSION['usuario'];
+    if($_REQUEST['CambiarRol']=='Usuario'){
+        $rol=1;
+    }else{
+        $rol=0;
+    }
+    ConexionEstatica::ModificarUsuario($_REQUEST['Correo'], $_REQUEST['Nombre'], $rol);
+    $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());    
+    header("location:../vistas/ListarUsuarios.php");
+    ConexionEstatica::cerrarConexion();    
+}
+
 if (isset($_REQUEST['AddJuego'])) {
     ConexionEstatica::AbrirConexion();
     ConexionEstatica::ValidarJuegos($_REQUEST['Nombre']);

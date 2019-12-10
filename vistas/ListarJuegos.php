@@ -16,7 +16,7 @@ and open the template in the editor.
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
         session_start();
-        $_SESSION['lugar']='ListarJuegos';
+        $_SESSION['lugar'] = 'ListarJuegos';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -78,7 +78,8 @@ and open the template in the editor.
                                             </form>
                                         </div>
                                     </li>
-                                <?php }
+                                    <?php
+                                }
                             }
                             ?>
                         </ul>
@@ -153,13 +154,38 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo()?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>                                        
-                                        <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto(); ?>" alt="foto"></td>-->
+                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>                                        
+                                        <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto();      ?>" alt="foto"></td>-->
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
-                                        <td>Boton de ventana con mas contenido</td>
+                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso" type="button" value="Mostrar"></td>
                                     </tr>
-                                <?php } ?>
+                                <div id="mostrar_extenso" class="modal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title">
+                                                    <?php echo $juegos[$index]->getNombre(); ?>
+                                                </div>            
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto">
+                                                <p>Descripcion: <?php echo $juegos[$index]->getDescripcion(); ?></p>
+                                                <p>Plataforma: <?php echo $juegos[$index]->getPlataforma(); ?></p>
+                                                <p>Fecha Salida: <?php echo $juegos[$index]->getF_Salida(); ?></p>
+                                                <p>Edad Minima: <?php echo $juegos[$index]->getE_Minima(); ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="alert alert-primary alert-dismissible show fade">
+                                                    Cerrar:
+                                                    <button type="button" class="close align-items-end" data-dismiss="modal">X</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
                             </tbody>
                         </table>
                         <?php
@@ -197,12 +223,36 @@ and open the template in the editor.
                                 <?php for ($index = 0; $index < count($juegos); $index++) {
                                     ?>
                                     <tr>
-                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo()?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>
+                                        <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
-                                        <td>Boton de ventana con mas contenido</td>
+                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso" type="button" value="Mostrar"></td>
                                     </tr>
-                                <?php } ?>
+                                <div id="mostrar_extenso" class="modal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title">
+                                                    <?php echo $juegos[$index]->getNombre(); ?>
+                                                </div>            
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto">
+                                                <p>Descripcion: <?php echo $juegos[$index]->getDescripcion(); ?></p>
+                                                <p>Plataforma: <?php echo $juegos[$index]->getPlataforma(); ?></p>
+                                                <p>Fecha Salida: <?php echo $juegos[$index]->getF_Salida(); ?></p>
+                                                <p>Edad Minima: <?php echo $juegos[$index]->getE_Minima(); ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="alert alert-primary alert-dismissible show fade">
+                                                    Cerrar:
+                                                    <button type="button" class="close align-items-end" data-dismiss="modal">X</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                             </tbody>
                         </table>
                         <?php
@@ -212,7 +262,7 @@ and open the template in the editor.
             </main>            
         </div>
         <footer class="color">
-<?php include_once '../footer.php'; ?>
+            <?php include_once '../footer.php'; ?>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

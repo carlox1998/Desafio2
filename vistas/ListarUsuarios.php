@@ -8,39 +8,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <style>
-            div.table 
-            {
-                display:table;
-            }
-            form.tr, div.tr
-            {
-                display:table-row;
-            }
-            span.td
-            {
-                display:table-cell;
-            }
-        </style>
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
-        <script>
-            function cambiarColor(n) {
-                var valor = "boton" + n;
-                var valor2 = "Rol" + n;
-                var boton = document.getElementById(valor).value;
-                if (boton == "Usuario") {
-                    document.getElementById(valor).value = "Administrador";
-                    document.getElementById(valor2).value = "Administrador";
-                    document.getElementById(valor).style.background = "#00FF00";
-                } else {
-                    document.getElementById(valor).value = "Usuario";
-                    document.getElementById(valor2).value = "Usuario";
-                    document.getElementById(valor).style.background = "#FF0000";
-                }
-
-            }
-        </script>
     </head>
     <body>
         <?php
@@ -136,13 +105,11 @@ and open the template in the editor.
                         <span class="td"><input type="text"  name="Correo" value="<?php echo $usuarios[$index]->getCorreo(); ?>" readonly></span>
                         <span class="td"><input type="text"  name="Nombre" value="<?php echo $usuarios[$index]->getNombre(); ?>" required></span>
                         <?php if ($usuarios[$index]->getRol() == 0) { ?>
-                            <span class="td"><input type="button" id="boton<?php echo $index ?>" name="Usuario" value="Usuario" style="background-color: red" onclick="cambiarColor(<?php echo $index ?>)"></span>
-                            <input type="hidden" id="Rol<?php echo $index ?>" name="Rol" value="Usuario">
+                        <span class="td"><input type="submit" name="CambiarRol" value="Usuario" style="background-color: red"></span>
                             <?php
                         } else {
                             ?>
-                            <span class="td"><input type="button" id="boton<?php echo $index ?>" name="Administrador" value="Administrador" style="background-color: #00FF00" onclick="cambiarColor(<?php echo $index ?>)"></span>
-                            <input type="hidden" id="Rol<?php echo $index ?>" name="Rol" value="Administrador">
+                            <span class="td"><input type="submit" name="CambiarRol" value="Administrador" style="background-color: #00FF00"></span>
                             <?php
                         }
                         ?> 

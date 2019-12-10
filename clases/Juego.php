@@ -52,10 +52,6 @@ class Juego {
         return $this->Descripcion;
     }
 
-    function getTematica() {
-        return $this->Tematica;
-    }
-
     function getPlataforma() {
         return $this->Plataforma;
     }
@@ -82,10 +78,6 @@ class Juego {
 
     function setDescripcion($Descripcion) {
         $this->Descripcion = $Descripcion;
-    }
-
-    function setTematica($Tematica) {
-        $this->Tematica = $Tematica;
     }
 
     function setPlataforma($Plataforma) {

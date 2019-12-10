@@ -24,6 +24,9 @@ and open the template in the editor.
 .modal-title{
     width: 100%;
 }
+div h1{
+    text-align: center;
+}
 
 h1,h2,h3{
     text-align: center;
@@ -38,10 +41,17 @@ h1,h2,h3{
 .navbar{
     margin-left: 15px;
 }
+
+table, tr, td,th{
+    border-collapse: collapse;
+    border:1px black solid;
+}
+
 div.table 
 {
     display:table;
 }
+
 form.tr, div.tr
 {
     display:table-row;
