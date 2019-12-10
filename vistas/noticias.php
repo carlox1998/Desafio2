@@ -7,13 +7,32 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <style type="text/css">
-            #rss02{border-radius:8px;padding:10px;background-color:white;border:2px solid #d4eefd;margin-bottom:1em;margin:6px 0 12px 0;font-size:0.8em;line-height:18px;}
-        </style>
-        <script src="https://www.google.com/uds/?file=feed&amp;v=1" type="text/javascript"></script>
+        <title></title>     
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
+        
+        <!--
+        <script type="text/javascript" src="https://www.google.com/uds"></script>        
+        <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js" type="text/javascript"></script>-->
+
+
+
+        <!--
+        <script type="text/javascript">
+            google.load("feed", "1");
+            function load() {
+                var feed = "http://feeds.bbci.co.uk/news/world/rss.xml";
+                new GFdynamicFeedControl(feed, "rss02");
+            }
+            function OnLoad() {
+                var feedControl = new google.feeds.FeedControl();
+                feedControl.setNumEntries(3);
+                feedControl.addFeed("https://kotaku.com/rss", "kotaku");
+                feedControl.addFeed("https://www.3djuegos.com/universo/rss/rss.php", "3DJuegos");
+                feedControl.draw(document.getElementById("rss02"));
+            }
+            google.setOnLoadCallback(OnLoad);
+        </script>
         <script type="text/javascript">
             google.load('feeds', '1');
             function OnLoad() {
@@ -24,14 +43,14 @@ and open the template in the editor.
                 feedControl.draw(document.getElementById("rss02"));
             }
             google.setOnLoadCallback(OnLoad);
-        </script>   
+        </script>  --> 
     </head>
     <body>
         <?php
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
         session_start();
-        $_SESSION['lugar']='noticias';
+        $_SESSION['lugar'] = 'noticias';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -93,7 +112,8 @@ and open the template in the editor.
                                             </form>
                                         </div>
                                     </li>
-                                <?php }
+                                    <?php
+                                }
                             }
                             ?>
                         </ul>
@@ -102,10 +122,11 @@ and open the template in the editor.
             </div>
         </div>
         
-        <div id="rss02">
-
-        </div>
-
+        <script src="//rss.bloople.net/?url=https%3A%2F%2Fkotaku.com%2Frss&detail=-1&limit=5&showtitle=false&type=js"></script>
+        
+        <script src="//rss.bloople.net/?url=https%3A%2F%2Fwww.3djuegos.com%2Funiverso%2Frss%2Frss.php&detail=-1&limit=5&showtitle=false&type=js"></script>
+        
+        
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="../files/bootstrap-4.3.1-dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

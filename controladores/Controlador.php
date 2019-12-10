@@ -42,7 +42,7 @@ if (isset($_REQUEST['registrarse'])) {
 if (isset($_REQUEST['UltimaNoticia'])) {
     ConexionEstatica::AbrirConexion();
     //$_SESSION['noticias']= ConexionEstatica::ObtenerNoticiasNuevas();
-    header("location:../vistas/noticias.php");
+    header("location:../vistas/UltimasNoticias.php");
     ConexionEstatica::cerrarConexion();
 }
 
