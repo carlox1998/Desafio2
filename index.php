@@ -115,8 +115,9 @@ and open the template in the editor.
                     <h1>GOD</h1>
                 </div>
                 <p>Bienvenidos a <abbr title="Games Or Death.">GOD</abbr> un lugar dedicado a VideoJuegos tanto antiguos como las nuevos incorporaciones a este sector.</p>
-                <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados o ver las ultimas incorporaciones de estos.Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.</p>
+                <p>En esta pagina podreis ver los distintos tipos de juegos que habia hace unos años con los que seguramente no estes familiarizados o ver las ultimas incorporaciones de estos.</p>
                 <p>En la parte de noticias podreis ver las nuevas noticias que hay sobre los nuevos juegos que vayan saliendo, o puedes ver las noticias destacadas desde antiguos hasta los de ahora.</p>
+                <p>Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.Siempre y cuando estes registrado a nuestra web.</p>
             </main>            
         </div>
         <footer>
