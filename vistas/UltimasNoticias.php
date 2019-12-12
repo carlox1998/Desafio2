@@ -10,8 +10,27 @@ and open the template in the editor.
         <title></title>     
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
+        <script>
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "../multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "../multimedia/musica.mp3";
+                }
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
@@ -95,7 +114,7 @@ and open the template in the editor.
         <div class="container mt-5">
             <script src="//rss.bloople.net/?url=https%3A%2F%2Fkotaku.com%2Frss&detail=20&limit=5&showtitle=false&striphtml=true&forceutf8=true&fixbugs=true&type=js"></script>
         </div>
-
+        <audio src="../multimedia/musica.mp3" loop hidden autoplay id='A001'></audio>
         <div class="container-fluid"> 
             <footer>
                 <?php include_once '../footer.php'; ?>

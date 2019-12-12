@@ -10,8 +10,27 @@ and open the template in the editor.
         <title></title>
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
+        <script>
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "../multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "../multimedia/musica.mp3";
+                }
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         require_once '../clases/Usuario.php';
         session_start();
@@ -77,7 +96,8 @@ and open the template in the editor.
                                             </form>
                                         </div>
                                     </li>
-                                <?php }
+                                    <?php
+                                }
                             }
                             ?>
                         </ul>
@@ -105,7 +125,7 @@ and open the template in the editor.
                         <span class="td"><input type="text"  name="Correo" value="<?php echo $usuarios[$index]->getCorreo(); ?>" readonly></span>
                         <span class="td"><input type="text"  name="Nombre" value="<?php echo $usuarios[$index]->getNombre(); ?>" required></span>
                         <?php if ($usuarios[$index]->getRol() == 0) { ?>
-                        <span class="td"><input type="submit" name="CambiarRol" value="Usuario" style="background-color: red"></span>
+                            <span class="td"><input type="submit" name="CambiarRol" value="Usuario" style="background-color: red"></span>
                             <?php
                         } else {
                             ?>
@@ -119,6 +139,7 @@ and open the template in the editor.
                 <?php } ?>
             </div>
         </div>
+        <audio src="../multimedia/musica.mp3" loop hidden autoplay id='A001'></audio>
         <footer>
             <?php include_once '../footer.php'; ?>
         </footer>

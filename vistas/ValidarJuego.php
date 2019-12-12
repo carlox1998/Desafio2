@@ -10,13 +10,32 @@ and open the template in the editor.
         <title></title>
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
+        <script>
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "../multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "../multimedia/musica.mp3";
+                }
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         include_once '../clases/Usuario.php';
         include_once '../clases/Juego.php';
         session_start();
-        $_SESSION['lugar']='ValidarJuego';
+        $_SESSION['lugar'] = 'ValidarJuego';
         ?>
         <div class="container-fluid color">
             <?php include_once '../header.php'; ?>
@@ -78,7 +97,8 @@ and open the template in the editor.
                                             </form>
                                         </div>
                                     </li>
-                                <?php }
+                                <?php
+                                }
                             }
                             ?>
                         </ul>
@@ -114,7 +134,7 @@ and open the template in the editor.
                         <?php for ($index = 0; $index < count($juegos); $index++) {
                             ?>
                             <form class="tr" name="formulario" action="../controladores/ControladorAdmin.php" method="post">
-                                <span class="td"><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo()?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></span>
+                                <span class="td"><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></span>
                                 <span class="td"><input type="text"  name="Nombre" value="<?php echo $juegos[$index]->getNombre(); ?>" readonly></span>
                                 <span class="td"><input type="text"  name="Descripcion" value="<?php echo $juegos[$index]->getDescripcion(); ?>" required></span>
                                 <span class="td"><input type="text"  name="Plataforma" value="<?php echo $juegos[$index]->getPlataforma(); ?>" readonly></span>
@@ -127,18 +147,19 @@ and open the template in the editor.
                                 <input type="hidden"  name="Nombre" value="<?php echo $juegos[$index]->getNombre(); ?>" readonly>                                
                                 <select name="Tematica" required>
                                     <?php for ($index1 = 0; $index1 < count($tematicas); $index1++) { ?>
-                                        <option  name=tematica value="<?php echo $index1+1 ?>"><?php echo $tematicas[$index1] ?></option>
-                                        <?php } ?>
+                                        <option  name=tematica value="<?php echo $index1 + 1 ?>"><?php echo $tematicas[$index1] ?></option>
+    <?php } ?>
                                 </select>                                
                                 <span class="td"><input type="submit" name="AddTematica" value="Añadir Tematica"/></span>
-                                </form>
-                            <?php } ?>
-                        </div>
+                            </form>
+<?php } ?>
                     </div>
-                </main>            
-            </div>
-            <footer>
-                <?php include_once '../footer.php'; ?>
+                </div>
+            </main>            
+        </div>
+        <audio src="../multimedia/musica.mp3" loop hidden autoplay id='A001'></audio>
+        <footer>
+<?php include_once '../footer.php'; ?>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

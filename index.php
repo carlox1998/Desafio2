@@ -26,9 +26,28 @@ and open the template in the editor.
                     }
                 });
             });
+            
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "multimedia/musica.mp3";
+                }
+                alert(localStorage.getItem("tiempo"));
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
         </script>
     </head>
-    <body>
+    <body onload="reproducir" onunload="tenertiempo()">
         <?php
         require_once './clases/Usuario.php';
         session_start();
@@ -120,6 +139,9 @@ and open the template in the editor.
                 <p>Tambien podreis pedir que añadamos un juego que falte en nuestra pagina ya sea antiguo o nuevo.Siempre y cuando estes registrado a nuestra web.</p>
             </main>            
         </div>
+        
+        <audio src="multimedia/musica.mp3" controls autoplay id='A001'></audio>
+        
         <footer>
             <?php include_once 'footer.php'; ?>
         </footer>

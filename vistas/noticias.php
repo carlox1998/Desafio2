@@ -10,7 +10,28 @@ and open the template in the editor.
         <title></title>     
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
-        
+        <script>
+
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "../multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "../multimedia/musica.mp3";
+                }
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
+
+   </script>
+
         <!--
         <script type="text/javascript" src="https://www.google.com/uds"></script>        
         <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js" type="text/javascript"></script>-->
@@ -45,7 +66,7 @@ and open the template in the editor.
             google.setOnLoadCallback(OnLoad);
         </script>  --> 
     </head>
-    <body>
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
@@ -121,19 +142,19 @@ and open the template in the editor.
                 </nav>
             </div>
         </div>
-        
-        
+
+
         <div class="container mt-5">
             <script src="//rss.bloople.net/?url=https%3A%2F%2Fwww.gamereactor.es%2Frss%2Frss.php%3Ftexttype%3D4&detail=10&limit=4&showtitle=false&type=js"></script>
         </div>
-        
+        <audio src="../multimedia/musica.mp3" loop hidden autoplay id='A001'></audio>
         <div class="container-fluid"> 
             <footer>
                 <?php include_once '../footer.php'; ?>
             </footer>
         </div>
-        
-        
+
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="../files/bootstrap-4.3.1-dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -6,11 +6,6 @@
             <?php
             if ($_SESSION['lugar'] == 'index') {
                 ?>
-
-                <audio id="A001" hidden autoplay loop>
-                    <source src="multimedia/musica.mp3" type="audio/mp3"/>
-                    Tu navegador no soporta audio en HTML5
-                </audio>
                 <img src="imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>
             <?php } else { ?>
                 <img src="../imagen/cosa2.jpg" width="60px" height="60px" alt="logo" class="icon"/>

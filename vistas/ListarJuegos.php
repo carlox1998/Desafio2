@@ -10,8 +10,27 @@ and open the template in the editor.
         <title>Desafio</title>
         <link rel="stylesheet" href="../files/bootstrap-4.3.1-dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/micss.css"/>
+        <script>
+            function reproducir() {
+                var oAudio = document.getElementById('A001');
+                var audioURL = document.getElementById('A001').src;
+                if (localStorage.getItem("tiempo") !== 'null') {
+                    var ruta = "../multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                } else {
+                    var ruta = "../multimedia/musica.mp3";
+                }
+                //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
+                //alert(audioURL.value);
+                oAudio.src = ruta;
+            }
+
+            function tenertiempo() {
+                var oAudio = document.getElementById('A001');
+                localStorage.setItem("tiempo", oAudio.currentTime);
+            }
+        </script>
     </head>
-    <body>
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         require_once '../clases/Juego.php';
         require_once '../clases/Usuario.php';
@@ -155,12 +174,12 @@ and open the template in the editor.
                                     ?>
                                     <tr>
                                         <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>                                        
-                                        <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto();      ?>" alt="foto"></td>-->
+                                        <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto();       ?>" alt="foto"></td>-->
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
                                         <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso<?php echo $index ?>" type="button" value="Mostrar"></td>
                                     </tr>
-                                <div id="mostrar_extenso<?php echo  $index?>" class="modal">
+                                <div id="mostrar_extenso<?php echo $index ?>" class="modal">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -226,9 +245,9 @@ and open the template in the editor.
                                         <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
-                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso<?php echo $index  ?>" type="button" value="Mostrar"></td>
+                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso<?php echo $index ?>" type="button" value="Mostrar"></td>
                                     </tr>
-                                <div id="mostrar_extenso<?php echo  $index?>" class="modal">
+                                <div id="mostrar_extenso<?php echo $index ?>" class="modal">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -261,6 +280,8 @@ and open the template in the editor.
                 ?>
             </main>            
         </div>
+        <audio src="../multimedia/musica.mp3" loop hidden autoplay id='A001'></audio>
+        
         <footer class="color">
             <?php include_once '../footer.php'; ?>
         </footer>
