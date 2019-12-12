@@ -35,7 +35,6 @@ and open the template in the editor.
                 } else {
                     var ruta = "multimedia/musica.mp3";
                 }
-                alert(localStorage.getItem("tiempo"));
                 //audioURL.value = "multimedia/musica.mp3#t=" + localStorage.getItem("tiempo");
                 //alert(audioURL.value);
                 oAudio.src = ruta;
@@ -47,7 +46,7 @@ and open the template in the editor.
             }
         </script>
     </head>
-    <body onload="reproducir" onunload="tenertiempo()">
+    <body onload="reproducir()" onunload="tenertiempo()">
         <?php
         require_once './clases/Usuario.php';
         session_start();
@@ -140,7 +139,7 @@ and open the template in the editor.
             </main>            
         </div>
         
-        <audio src="multimedia/musica.mp3" controls autoplay id='A001'></audio>
+        <audio src="multimedia/musica.mp3" hidden loop autoplay id='A001'></audio>
         
         <footer>
             <?php include_once 'footer.php'; ?>
