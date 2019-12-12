@@ -69,7 +69,7 @@ and open the template in the editor.
                                     </div>
                                 </li>
                                 <?php if ($usuario->getRol() == 1) { ?>
-                                    <li class="nav-item dropdown">
+                                    <li class="nav-item active dropdown">
                                         <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Administrar Usuarios</button>
                                         <div class="dropdown-menu">
                                             <form class="dropdown-item" action="../controladores/Controlador.php" method="post">

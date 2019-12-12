@@ -56,7 +56,7 @@ and open the template in the editor.
                                 $usuario = $_SESSION['usuario'];
                                 ?>
                                 <li class="nav-item dropdown">
-                                    <button class="btn nav-link dropdown-toggle" data-toggle="dropdown">Area Juego</button>
+                                    <button class="btn nav-link active dropdown-toggle" data-toggle="dropdown">Area Juego</button>
                                     <div class="dropdown-menu">
                                         <form class="dropdown-item" action="../controladores/Controlador.php" method="post">
                                             <input class="btn" type="submit" name="AddJuegoPagina" value="Añadir Juegos">

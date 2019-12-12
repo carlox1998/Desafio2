@@ -16,7 +16,10 @@ if (isset($_REQUEST['EliminarUsuario'])) {
 if (isset($_REQUEST['ModificarUsuario'])) {
     ConexionEstatica::AbrirConexion();
     $usuario=$_SESSION['usuario'];
-    ConexionEstatica::ModificarUsuarioNombre($_REQUEST['Correo'], $_REQUEST['Nombre']);
+    $correo=$_REQUEST['Correo'];
+    $nombre=$_REQUEST['Nombre'];
+    ConexionEstatica::ModificarUsuarioNombre($correo, $nombre);
+    
     $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());  
     header("location:../vistas/ListarUsuarios.php");    
     ConexionEstatica::cerrarConexion();
@@ -30,7 +33,8 @@ if (isset($_REQUEST['CambiarRol'])) {
     }else{
         $rol=0;
     }
-    ConexionEstatica::ModificarUsuarioRol($_REQUEST['Correo'], $_REQUEST['Nombre'], $rol);
+    $correo=$_REQUEST['Correo'];
+    ConexionEstatica::ModificarUsuarioRol($correo, $rol);
     $_SESSION['usuarios']=ConexionEstatica::obtenerUsuariosExcepcion($usuario->getCorreo());    
     header("location:../vistas/ListarUsuarios.php");
     ConexionEstatica::cerrarConexion();    

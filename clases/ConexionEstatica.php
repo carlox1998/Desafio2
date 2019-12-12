@@ -316,7 +316,7 @@ class ConexionEstatica {
     
     
     static function ModificarUsuarioNombre($correo, $nombre) {
-        $query = "Update usuario set Nombre= ?,  WHERE Correo = '" . $correo . "'";
+        $query = "Update usuario set Nombre= ?  WHERE Correo = '" . $correo . "'";
         $stmt = self::$conexion->prepare($query);
         $stmt->bind_param("s", $nombre);
         if ($stmt->execute()) {
