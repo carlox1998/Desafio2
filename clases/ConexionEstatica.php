@@ -302,10 +302,23 @@ class ConexionEstatica {
      * @param type $nombre
      * @param type $rol
      */
-    static function ModificarUsuario($correo, $nombre, $rol) {
-        $query = "Update usuario set Nombre= ?, Rol= ? WHERE Correo = '" . $correo . "'";
+    static function ModificarUsuarioRol($correo, $rol) {
+        $query = "Update usuario set Rol= ? WHERE Correo = '" . $correo . "'";
         $stmt = self::$conexion->prepare($query);
-        $stmt->bind_param("si", $nombre, $rol);
+        $stmt->bind_param("i", $rol);
+        if ($stmt->execute()) {
+            echo 'OK';
+        } else {
+            echo 'Falla';
+        }
+        $stmt->close();
+    }
+    
+    
+    static function ModificarUsuarioNombre($correo, $nombre) {
+        $query = "Update usuario set Nombre= ?,  WHERE Correo = '" . $correo . "'";
+        $stmt = self::$conexion->prepare($query);
+        $stmt->bind_param("s", $nombre);
         if ($stmt->execute()) {
             echo 'OK';
         } else {

@@ -158,9 +158,9 @@ and open the template in the editor.
                                         <!--<td><img class="modimagen" src="<?php //$juegos[$index]->getFoto();      ?>" alt="foto"></td>-->
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
-                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso" type="button" value="Mostrar"></td>
+                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso<?php echo $index ?>" type="button" value="Mostrar"></td>
                                     </tr>
-                                <div id="mostrar_extenso" class="modal">
+                                <div id="mostrar_extenso<?php echo  $index?>" class="modal">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -226,9 +226,9 @@ and open the template in the editor.
                                         <td><img class="modimagen" src="data:<?php echo $juegos[$index]->getTipo() ?>;base64,<?php echo base64_encode($juegos[$index]->getFoto()); ?>" alt="foto"></td>
                                         <td><?php echo $juegos[$index]->getNombre(); ?></td>
                                         <td><?php echo $juegos[$index]->getE_Minima(); ?></td>
-                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso" type="button" value="Mostrar"></td>
+                                        <td><input class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#mostrar_extenso<?php echo $index  ?>" type="button" value="Mostrar"></td>
                                     </tr>
-                                <div id="mostrar_extenso" class="modal">
+                                <div id="mostrar_extenso<?php echo  $index?>" class="modal">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
